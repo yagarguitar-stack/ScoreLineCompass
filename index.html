@@ -402,6 +402,58 @@ body.radialing,body.radialing *{-webkit-user-select:none!important;user-select:n
 .dgc{height:26px;min-width:18px;border:1px solid var(--ink-line);border-radius:4px;background:transparent;padding:0;cursor:pointer}
 .dgc.bt{border-left:2px solid var(--on-ink-dim)}
 .dgc.on{background:var(--indigo);border-color:var(--indigo)}
+.dgn{font-size:10px;color:var(--on-ink-dim);line-height:1}
+.dgridbar{margin:0 0 6px;padding:4px 6px 2px;border:1px solid var(--ink-line);border-radius:10px;background:var(--ink)}
+.dgb-hd{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.dgridbar .tb{min-height:28px;padding:0 8px;font-size:12px}
+.dgb-ttl{font-weight:700;font-size:13px}
+.dgb-ttl small{margin-left:6px;color:var(--on-ink-dim);font-weight:400}
+.dgb-sp{flex:1}
+.dgridbar .dgw{margin:4px 0 2px}
+.dgridbar .dgc{height:20px}
+.dgc.cur{box-shadow:inset 0 0 0 2px var(--chord-on-ink)}
+.dcred{font-size:11px}
+.dgmrow{position:relative;height:76px}
+.dgmb{position:absolute;top:0;background:none;border:0;padding:0 2px;cursor:pointer;border-radius:6px;line-height:0}
+.dgmb:hover{background:rgba(79,70,229,.08)}
+.dgmtop{display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;margin:2px 0 10px}
+.dgmb.top{position:static;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 4px}
+.dgmn{font:800 14px var(--font-score);color:var(--chord);line-height:1.2}
+.vcbd{margin:4px 0 8px}
+.proll{position:fixed;z-index:45;background:#fff;border-radius:12px;box-shadow:0 0 0 1px rgba(0,0,0,.12),0 24px 50px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden;color:#1f2430;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif}
+.pr-tb{flex:0 0 auto;height:42px;display:flex;align-items:center;gap:6px;padding:0 10px;border-bottom:1px solid #e3e5ea;background:#fff;cursor:move;touch-action:none;user-select:none;-webkit-user-select:none}
+.pr-grip{width:18px;height:12px;background-image:radial-gradient(circle,#9aa0ab 1.2px,transparent 1.5px);background-size:6px 6px}
+.pr-ttl{font-weight:700;font-size:14px;letter-spacing:.05em}
+.pr-sp{flex:1}
+.pr-ttl,.pr-b,.pr-zm{white-space:nowrap;flex:0 0 auto}
+@media (max-width:520px){.pr-ttl{display:none}.pr-zm>span{display:none}.pr-b{padding:0 8px}}
+.pr-b{height:28px;min-width:28px;padding:0 10px;border-radius:7px;border:1px solid #d5d8df;background:#f3f4f7;color:#1f2430;font:600 12px inherit;cursor:pointer}
+.pr-b.on{background:#4f46e5;border-color:#4338ca;color:#fff}
+.pr-zm{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#6b7280}
+.pr-sc{flex:1;overflow:auto;position:relative;-webkit-overflow-scrolling:touch;background:#fff}
+.pr-in{position:relative;display:grid;grid-template-columns:58px 1fr;grid-template-rows:40px 1fr}
+.pr-corner{grid-area:1/1;position:sticky;left:0;top:0;z-index:4;background:#f6f7f9;border-bottom:1px solid #e3e5ea;border-right:1px solid #cfd2d8}
+.pr-hd{grid-area:1/2;position:sticky;top:0;z-index:3;height:40px;background:#f6f7f9;border-bottom:1px solid #e3e5ea}
+.pr-bn{position:absolute;top:2px;font-size:10px;color:#6b7280}
+.pr-cn{position:absolute;top:14px;font:800 16px Georgia,"Times New Roman",serif;color:#9a3412;white-space:nowrap}
+.pr-keys{grid-area:2/1;position:sticky;left:0;z-index:2;background:#f7f4ec;border-right:1px solid rgba(0,0,0,.3)}
+.pr-k{position:absolute;left:0;height:18px;box-sizing:border-box;font:600 9.5px -apple-system,sans-serif;color:#6b6457;display:flex;align-items:center;justify-content:flex-end;padding-right:5px}
+.pr-k.w{width:100%;background:linear-gradient(90deg,#efe9dc,#fbf9f4 60%,#f1ece1);border-bottom:1px solid rgba(0,0,0,.09)}
+.pr-k.b{width:62%;background:linear-gradient(90deg,#1a1a1a,#3a3a3a 75%,#222);border-radius:0 3px 3px 0;z-index:1;box-shadow:1px 1px 2px rgba(0,0,0,.4)}
+.pr-roll{grid-area:2/2;position:relative;overflow:hidden}
+.pr-rb{position:absolute;left:0;right:0;height:18px;background:rgba(30,40,60,.035)}
+.pr-vl{position:absolute;top:0;bottom:0;width:1px;background:rgba(30,40,60,.06)}
+.pr-vl.beat{background:rgba(30,40,60,.14)}
+.pr-vl.bar{background:rgba(30,40,60,.38);width:1.5px}
+.pr-bd{position:absolute;border-radius:4px;background:rgba(154,52,18,.07);box-shadow:inset 0 0 0 1px rgba(154,52,18,.20)}
+.pr-n{position:absolute;border-radius:5px;background:linear-gradient(180deg,#6f68f2 0%,#4f46e5 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 0 0 1px #3730a3,0 2px 4px rgba(0,0,0,.2);box-sizing:border-box;display:flex;align-items:center;overflow:hidden}
+.pr-n.tie{opacity:.75}
+.pr-n span{font:700 10px -apple-system,sans-serif;color:#fff;padding-left:5px;opacity:.9}
+.pr-ph{position:absolute;top:0;bottom:0;width:2px;background:#dc2626;box-shadow:0 0 6px rgba(220,38,38,.6);z-index:2;pointer-events:none}
+.pr-ph.hide{display:none}
+.pr-rz{position:absolute;right:0;bottom:0;width:22px;height:22px;cursor:nwse-resize;touch-action:none;z-index:6;
+  background:linear-gradient(135deg,transparent 52%,#9aa0ab 52%,#9aa0ab 58%,transparent 58%,transparent 70%,#9aa0ab 70%,#9aa0ab 76%,transparent 76%)}
+.vch{cursor:pointer}
 .sheet .big{flex:1 1 140px;min-height:48px;text-align:left;padding:8px 12px}
 .sheet .big small{display:block;color:var(--on-ink-dim);font-size:12px}
 .sheet p{margin:0 0 8px;color:var(--on-ink-dim)}
@@ -419,6 +471,8 @@ body.radialing,body.radialing *{-webkit-user-select:none!important;user-select:n
 <!-- 共通の画面の部品（真鍮の羅針盤と海図）。読み込めない時・古い版の時は、これまでの見た目のまま -->
 <link rel="stylesheet" href="https://yagarguitar-stack.github.io/design-system/v1/components.css">
 <script src="https://yagarguitar-stack.github.io/design-system/v1/components.js"></script>
+<!-- 共通の楽器の音（ドラムの録音 MusyngKite）。ScoreLineTAB と同じ音で鳴らす -->
+<script src="https://yagarguitar-stack.github.io/design-system/v1/sound.js"></script>
 <style>
 /* ===== 共通の部品（版 1.3 以上）が読めた時だけ効く（body に sl-ch と ds-chart が付く）=====
    替えるのは譜面の外側だけ。紙面は白地に黒のまま */
@@ -525,6 +579,7 @@ body.sl-ch .ms-val{font:600 15px "Cormorant Garamond",serif;font-variant-numeric
 </header>
 <main id="main"></main>
 <div class="dock hide" id="dock">
+  <div class="dgridbar hide" id="dgridBar"></div>
   <div id="palWrap">
     <div class="loopRow hide" id="loopRow"></div>
     <div class="dtabs"><span class="seg"><button data-dtab="melody">入力</button><button data-dtab="chord">コード</button><button data-dtab="multi">選択</button></span><span class="mtools" id="mtools"></span></div>
@@ -2324,7 +2379,7 @@ function render(){
   { const t=$('title'); if(t){ t.onclick=null; t.classList.remove('clickable'); t.title=''; } }
   const L=$('topL'),R=$('topR'),M=$('main');
   $('dock').classList.toggle('hide',S.view==='list');
-  if(S.view==='list'){ stop(); renderList(L,R,M); }
+  if(S.view==='list'){ stop(); renderList(L,R,M); renderPR(); }
   else if(S.view==='song'){ S.view='sec'; renderSec(L,R,M); }
   else renderSec(L,R,M);
   bindHist(); renderDock();
@@ -2624,10 +2679,8 @@ function openDrumEditor(o){
   const grids=drumGrids(o.compound);
   if(!grids.some(g=>g[0]===o.div)){ const to=grids.reduce((a,g)=>Math.abs(g[0]-o.div)<Math.abs(a-o.div)?g[0]:a,grids[0][0]); o.rows=remapRows(o.rows,o.div,to,o.beats); o.div=to; }
   else o.rows=remapRows(o.rows,o.div,o.div,o.beats);
-  const draw=()=>{
-    const n=o.beats*o.div, per=o.div;
-    return `<div class="dgw"><div class="dg" style="grid-template-columns:max-content repeat(${n},minmax(18px,1fr))">${DROWS.map(([k,lb])=>
-      `<span class="dgl">${lb}</span>`+Array.from({length:n},(_,i)=>`<button class="dgc${i%per===0?' bt':''}${o.rows[k][i]?' on':''}" data-dk="${k}" data-di="${i}" aria-label="${lb} ${Math.floor(i/per)+1}拍目"></button>`).join('')).join('')}</div></div>`; };
+  if(o.more==null) o.more=!!uiPref().dgMore;
+  const draw=()=>dgGridHtml(o.rows,o.beats*o.div,o.div,o.more)+dgMoreBtn(o.rows,o.more,'dMore');
   sheet(`<h2>${esc(o.title)}</h2>
     ${o.name!=null?`<label class="f">型の名前<input id="dName" value="${esc(o.name)}"></label>`:''}
     <div class="btns"><span class="lb">マス</span><span class="seg">${grids.map(g=>`<button class="${g[0]===o.div?'on':''}" data-dgrid="${g[0]}">${g[1]}</button>`).join('')}</span></div>
@@ -2637,9 +2690,12 @@ function openDrumEditor(o){
     <div class="btns"><button class="tb" id="dPlay">鳴らす</button><button class="tb" id="dClear">全部消す</button>${(o.extra||[]).map((x,i)=>`<button class="tb${x[2]?' danger':''}" data-dex="${i}">${x[0]}</button>`).join('')}</div>
     <div class="btns"><button class="tb pri" id="dOk">決める</button><button class="tb" id="dCancel">やめる</button></div>`,sh=>{
     const stop=()=>{ if(DED){ clearInterval(DED.timer); DED=null; } const b=sh.querySelector('#dPlay'); if(b) b.textContent='鳴らす'; };
-    const bindGrid=()=>sh.querySelectorAll('[data-dk]').forEach(c=>c.onclick=()=>{ const k=c.dataset.dk, i=+c.dataset.di;
-      o.rows[k][i]=o.rows[k][i]?0:1; c.classList.toggle('on',!!o.rows[k][i]);
-      if(o.rows[k][i]&&audio()) mdrm(ac.currentTime+0.01,k); });
+    const bindGrid=()=>{ sh.querySelectorAll('[data-dk]').forEach(c=>c.onclick=()=>{ const k=c.dataset.dk, i=+c.dataset.di;
+        o.rows[k][i]=o.rows[k][i]?0:1;
+        const ot=dgOther(k); if(ot&&o.rows[k][i]&&o.rows[ot]) o.rows[ot][i]=0;   /* 開きと閉じのハイハットは同じマスに入れない */
+        sh.querySelector('#dGrid').innerHTML=draw(); bindGrid();
+        if(o.rows[k][i]&&audio()) mdrm(ac.currentTime+0.01,k); });
+      const mb=sh.querySelector('#dMore'); if(mb) mb.onclick=()=>{ o.more=!o.more; uiSet('dgMore',o.more); sh.querySelector('#dGrid').innerHTML=draw(); bindGrid(); }; };
     bindGrid();
     sh.querySelectorAll('[data-dgrid]').forEach(b=>b.onclick=()=>{ const to=+b.dataset.dgrid; if(to===o.div) return;
       o.rows=remapRows(o.rows,o.div,to,o.beats); o.div=to; sh.querySelectorAll('[data-dgrid]').forEach(x=>x.classList.toggle('on',x===b));
@@ -2661,8 +2717,9 @@ function openDrumEditor(o){
   });
 }
 /* 今ある型（または空）から、表に入れる元を作る */
-function drumBase(k,ts){ const n=beatsOf(ts), compound=ts==='6/8', p=drumPat(k);
+function drumBase(k,ts){ const n=beatsOf(ts), compound=ts==='6/8', p=drumPat(k,null,ts);
   if(!p) return {beats:n,compound,div:compound?3:2,rows:{}};
+  if(p.steps) return {beats:n,compound,div:p.steps/n,rows:JSON.parse(JSON.stringify(p.rows))};
   const rows={}; DROWS.forEach(([r])=>{ const a=p.rows[r]; rows[r]=a?Array.from({length:n*p.div},(_,i)=>a[i%a.length]):[]; });
   return {beats:n,compound,div:p.div,rows}; }
 function openBarDrum(sec,bi){
@@ -2674,70 +2731,119 @@ function openBarDrum(sec,bi){
   openDrumEditor(o);
 }
 /* 伴奏・ドラム */
-/* ── ドラムの画面：開いた時から表が出ている。元からある型を直すと「〇〇（自作）」として別の型になる ── */
+/* ── ドラムの画面（ScoreLineTAB と同じ仕様）：型を選ぶ。形は下の帯の上のマスで直す ── */
 function openDrumSheet(scope){
-  const s=song(), sec=scopeSec(scope), cur=sec.drum;
-  const st={key:cur, dirty:false, isNew:false};
-  const load=k=>{ const u=k&&k.slice(0,2)==='u:'?userPat(k,s):null;
-    const b=u?{beats:u.beats,compound:!!u.compound,div:u.div,rows:JSON.parse(JSON.stringify(u.rows))}:drumBase(k,sec.ts);
-    const g=drumGrids(b.compound); if(!g.some(x=>x[0]===b.div)){ const to=g.reduce((a,x)=>Math.abs(x[0]-b.div)<Math.abs(a-b.div)?x[0]:a,g[0][0]); b.rows=remapRows(b.rows,b.div,to,b.beats); b.div=to; }
-    else b.rows=remapRows(b.rows,b.div,b.div,b.beats);
-    b.name=u?u.name:null; return b; };
-  let o=load(cur);
-  const isUser=()=>!st.isNew&&st.key&&st.key.slice(0,2)==='u:';
-  const uniq=base=>{ const names=new Set(Object.values(s.drumPats||{}).map(p=>p.name)); let n=base, i=2; while(names.has(n)) n=base.replace(/（自作）$/,'')+`（自作${i++}）`; return n; };
-  const nameHint=()=>isUser()?o.name:(st.isNew||st.key==='none'?uniq('自作の型'+(Object.keys(s.drumPats||{}).length+1)):uniq(drumLabel(st.key)+'（自作）'));
-  const L=drumList(sec.ts);
-  const grid=()=>{ const n=o.beats*o.div, per=o.div;
-    return `<div class="dgw"><div class="dg" style="grid-template-columns:max-content repeat(${n},minmax(18px,1fr))">${DROWS.map(([k,lb])=>
-      `<span class="dgl">${lb}</span>`+Array.from({length:n},(_,i)=>`<button class="dgc${i%per===0?' bt':''}${o.rows[k][i]?' on':''}" data-dk="${k}" data-di="${i}" aria-label="${lb} ${Math.floor(i/per)+1}拍目"></button>`).join('')).join('')}</div></div>`; };
-  const body=()=>`
-    <div class="btns"><span class="lb">型</span><select class="tb" id="dSel" aria-label="ドラムの型">${st.isNew?'<option value="" selected>（新しい型）</option>':''}${L.map(k=>`<option value="${k}" ${!st.isNew&&k===st.key?'selected':''}>${esc(drumLabel(k))}</option>`).join('')}</select>
-      <button class="tb" id="dNew2">新しい型</button></div>
-    <div class="btns"><span class="lb">マス</span><span class="seg">${drumGrids(o.compound).map(g=>`<button class="${g[0]===o.div?'on':''}" data-dgrid="${g[0]}">${g[1]}</button>`).join('')}</span></div>
-    <div id="dGrid">${grid()}</div>
-    <p class="snote" id="dNote">${st.dirty&&!isUser()?`直した型は「${esc(nameHint())}」として保存されます。元の型は変わりません。`:''}</p>
-    ${isUser()||st.isNew||st.dirty?`<label class="f">型の名前<input id="dName" value="${esc(isUser()?o.name:nameHint())}"></label>`:''}
-    <div class="btns"><button class="tb" id="dPlay">鳴らす</button><button class="tb" id="dClear">全部消す</button>${isUser()?'<button class="tb danger" id="dDel">この型を消す</button>':''}</div>
-    <div class="btns"><span class="lb">食いに合わせる</span><span class="seg"><button class="${s.drumAnt!==false?'on':''}" data-ant="1">オン</button><button class="${s.drumAnt===false?'on':''}" data-ant="0">オフ</button></span></div>
+  const s=song(), sec=scopeSec(scope), L=drumList(sec.ts,s);
+  const users=L.filter(k=>k.slice(0,2)==='u:'), base=L.filter(k=>k.slice(0,2)!=='u:');
+  const btn=k=>`<button class="tb${k===sec.drum?' on':''}" data-p="${esc(k)}">${esc(drumLabel(k,s))}${DD[k]&&drumCustomOf(s,k,sec.ts)?' ✎':''}</button>`;
+  const onOff=(id,on)=>`<span class="seg"><button class="${on?'on':''}" data-${id}="1">オン</button><button class="${on?'':'on'}" data-${id}="0">オフ</button></span>`;
+  const isU=sec.drum&&sec.drum.slice(0,2)==='u:';
+  const cred=smpCreditsHtml();
+  sheet(`<h2>ドラム</h2>${scopeHtml(scope)}
+    <div class="btns">${base.map(btn).join('')}</div>
+    ${users.length?`<p class="snote">自作の型</p><div class="btns">${users.map(btn).join('')}</div>`:''}
+    <p class="snote">形は下の帯の上のマスで直せます（拍子ごとに覚えます）。✎ は形を直した型です。</p>
+    <div class="btns"><span class="lb">タイト</span>${onOff('tight',!!s.drumTight)}</div>
+    <p class="snote">ドラム全体の響きを短く止めます（曲全体に効きます）。</p>
+    <div class="btns"><span class="lb">食いに合わせる</span>${onOff('ant',s.drumAnt!==false)}</div>
     <p class="snote">オンの時は、食いの位置でバスドラムとシンバルを鳴らし、元の拍の頭は休みます（曲全体に効きます）。</p>
-    <div class="btns"><button class="tb pri" id="dOk">決める</button><button class="tb" id="dCancel">やめる</button></div>`;
-  sheet(`<h2>ドラム</h2>${scopeHtml(scope)}<div id="dBody">${body()}</div>`,sh=>{
-    const stop=()=>{ if(DED){ clearInterval(DED.timer); DED=null; } const b=sh.querySelector('#dPlay'); if(b) b.textContent='鳴らす'; };
-    const redraw=()=>{ const nm=sh.querySelector('#dName'), keepName=nm&&(isUser()||st.isNew)?nm.value:null;
-      sh.querySelector('#dBody').innerHTML=body(); if(keepName!=null){ const n2=sh.querySelector('#dName'); if(n2) n2.value=keepName; } bind(); };
-    const touchGrid=()=>{ if(!st.dirty){ st.dirty=true; redraw(); } };
-    const bind=()=>{
-      sh.querySelectorAll('[data-dk]').forEach(c=>c.onclick=()=>{ const k=c.dataset.dk, i=+c.dataset.di;
-        o.rows[k][i]=o.rows[k][i]?0:1; c.classList.toggle('on',!!o.rows[k][i]);
-        if(o.rows[k][i]&&audio()) mdrm(ac.currentTime+0.01,k); touchGrid(); });
-      sh.querySelector('#dSel').onchange=e=>{ stop(); const k=e.target.value; if(!k) return; st.key=k; st.isNew=false; st.dirty=false; o=load(k); redraw(); };
-      sh.querySelector('#dNew2').onclick=()=>{ stop(); st.isNew=true; st.dirty=false; o={beats:beatsOf(sec.ts),compound:sec.ts==='6/8',div:sec.ts==='6/8'?3:2,rows:remapRows({},1,sec.ts==='6/8'?3:2,beatsOf(sec.ts)),name:null}; redraw(); };
-      sh.querySelectorAll('[data-dgrid]').forEach(b=>b.onclick=()=>{ const to=+b.dataset.dgrid; if(to===o.div) return;
-        o.rows=remapRows(o.rows,o.div,to,o.beats); o.div=to; st.dirty=true; redraw(); });
-      sh.querySelector('#dClear').onclick=()=>{ DROWS.forEach(([k])=>o.rows[k].fill(0)); st.dirty=true; redraw(); };
-      sh.querySelector('#dPlay').onclick=()=>{ if(DED){ stop(); return; } if(!audio()) return;
-        const sd=60/(sec.tempo||100)/o.div; let next=ac.currentTime+0.08, i=0;
-        DED={timer:setInterval(()=>{ if(!sh.isConnected){ stop(); return; }
-          while(next<ac.currentTime+0.25){ const n=o.beats*o.div, j=i%n, sd2=60/(sec.tempo||100)/o.div;
-            DROWS.forEach(([k])=>{ const r=o.rows[k]; if(r&&r[j]&&!(k==='hhs'&&o.rows.hh[j])) mdrm(next,k); }); next+=sd2; i++; } },40)};
-        sh.querySelector('#dPlay').textContent='止める'; };
-      const nm=sh.querySelector('#dName'); if(nm) nm.addEventListener('keydown',e=>e.stopPropagation());
-      const dd=sh.querySelector('#dDel'); if(dd) dd.onclick=()=>{ stop(); delete s.drumPats[st.key.slice(2)]; s.sections.forEach(x=>fitPatterns(x,s)); afterMeta('型を消しました'); };
-      sh.querySelectorAll('[data-ant]').forEach(b=>b.onclick=()=>{ s.drumAnt=b.dataset.ant==='1'; touch(s);
-        sh.querySelectorAll('[data-ant]').forEach(x=>x.classList.toggle('on',x===b)); });
-      sh.querySelector('#dCancel').onclick=()=>{ stop(); closeSheet(); };
-      sh.querySelector('#dOk').onclick=()=>{ stop();
-        const nm=sh.querySelector('#dName'), name=(nm&&nm.value.trim())||nameHint();
-        const pat={name,beats:o.beats,compound:!!o.compound,div:o.div,rows:o.rows};
-        let key=st.key, msg='';
-        if(isUser()&&(st.dirty||name!==o.name)){ s.drumPats[st.key.slice(2)]=pat; msg='型を直しました'; }
-        else if(st.isNew||st.dirty){ s.drumPats=s.drumPats||{}; const id=uid(); s.drumPats[id]=pat; key='u:'+id; msg=`「${name}」として保存しました`; }
-        if(key) metaTargets(scope).forEach(x=>{ if(drumOk(key,x.ts,s)) x.drum=key; });
-        afterMeta(msg); };
-    };
-    bind();
+    <div class="btns"><button class="tb" id="dGridT">${uiPref().dgHide?'マスを出す':'マスを畳む'}</button>${isU?'<button class="tb danger" id="dDel">この自作の型を消す</button>':''}</div>
+    ${cred?`<div class="snote dcred">${cred}</div>`:''}
+    <div class="btns"><button class="tb pri" id="dOk">閉じる</button></div>`,sh=>{
+    sh.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{ const v=b.dataset.p;
+      metaTargets(scope).forEach(x=>{ if(drumOk(v,x.ts,s)) x.drum=v; }); DGRID.sel=null; afterMeta(); });
+    const flip=(attr,fn)=>sh.querySelectorAll(`[data-${attr}]`).forEach(b=>b.onclick=()=>{ fn(b.getAttribute('data-'+attr)==='1'); touch(s);
+      sh.querySelectorAll(`[data-${attr}]`).forEach(x=>x.classList.toggle('on',x===b)); renderDgrid(); });
+    flip('tight',v=>{ s.drumTight=v; });
+    flip('ant',v=>{ s.drumAnt=v; });
+    sh.querySelector('#dGridT').onclick=()=>{ uiSet('dgHide',!uiPref().dgHide); closeSheet(); renderDock(); };
+    const dd=sh.querySelector('#dDel'); if(dd) dd.onclick=()=>{ if(!confirm('この自作の型を消します。使っている所は8ビートに戻ります。')) return;
+      delete s.drumPats[sec.drum.slice(2)]; s.sections.forEach(x=>fitPatterns(x,s)); afterMeta('型を消しました'); };
+    sh.querySelector('#dOk').onclick=closeSheet;
   });
+}
+/* ══ ドラムのマス（下の帯の上に常に出す。ScoreLineTAB と同じ仕様）══
+   いま触っている所の型と拍子の形を出し、押して直す。曲に型と拍子の組が二つ以上あれば札で切り替える。
+   出す・畳む、ほかの音の開き具合はこの端末に覚える */
+const UI_STORE='compose-note-ui';
+function uiPref(){ try{ return JSON.parse(localStorage.getItem(UI_STORE))||{}; }catch(e){ return {}; } }
+function uiSet(k,v){ const p=uiPref(); p[k]=v; try{ localStorage.setItem(UI_STORE,JSON.stringify(p)); }catch(e){} }
+const DGRID={sel:null,selSec:null};
+function dgOther(k){ return k==='hh'?'hhs':k==='hhs'?'hh':null; }
+function dgGridHtml(rows,n,per,more){
+  const head=`<span class="dgl"></span>`+Array.from({length:n},(_,i)=>`<span class="dgn">${i%per===0?Math.floor(i/per)+1:''}</span>`).join('');
+  return `<div class="dgw"><div class="dg" style="grid-template-columns:max-content repeat(${n},minmax(18px,1fr))">${head}${DROWS.filter(([k])=>more||!DROWS_EXTRA[k]).map(([k,lb])=>
+    `<span class="dgl">${lb}</span>`+Array.from({length:n},(_,i)=>`<button class="dgc${i%per===0?' bt':''}${rows[k]&&rows[k][i]?' on':''}" data-dk="${k}" data-di="${i}" aria-label="${lb} ${Math.floor(i/per)+1}拍目"></button>`).join('')).join('')}</div></div>`;
+}
+function dgMoreBtn(rows,more,id){
+  let used=0; Object.keys(DROWS_EXTRA).forEach(r=>(rows[r]||[]).forEach(v=>{ if(v) used++; }));
+  return `<button class="tb" id="${id}" title="オープンハイハット・リム・ハイタム・ロータム">${more?'− ほかの音をたたむ':'＋ ほかの音'+(used?`（${used}か所）`:'')}</button>`;
+}
+/* 曲にある「拍子と型」の組（鳴らさない以外） */
+function dgCombos(s){
+  const out=[], seen=new Set(), add=(ts,k)=>{ if(!k||k==='none'||!(DD[k]||userPat(k,s))) return; const g=ts+'|'+k; if(!seen.has(g)){ seen.add(g); out.push({g,ts,k}); } };
+  s.sections.forEach(sec=>{ add(sec.ts,sec.drum); sec.bars.forEach(b=>add(sec.ts,b.drum)); });
+  return out;
+}
+function dgCur(s){
+  const L=dgCombos(s); if(!L.length) return null;
+  if(DGRID.selSec!==S.secId) DGRID.sel=null;
+  const sec=section(), here=sec&&L.find(x=>x.g===sec.ts+'|'+sec.drum);
+  return L.find(x=>x.g===DGRID.sel)||here||L[0];
+}
+/* 型の今の形（直せる元）。自作の型は型そのものを直す */
+function dgShape(s,c){
+  if(DD[c.k]) return drumShapeOf(s,c.k,c.ts);
+  const u=userPat(c.k,s); if(!u) return null; const n=u.beats*u.div;
+  DROWS.forEach(([r])=>{ if(!Array.isArray(u.rows[r])) u.rows[r]=[]; while(u.rows[r].length<n) u.rows[r].push(0); });
+  return {steps:n,div:u.div,rows:u.rows,user:true};
+}
+function dgToggle(s,c,r,i){
+  if(DD[c.k]){
+    const cur=JSON.parse(JSON.stringify(drumShapeOf(s,c.k,c.ts)));
+    cur.rows[r][i]=cur.rows[r][i]?0:1; const ot=dgOther(r); if(ot&&cur.rows[r][i]) cur.rows[ot][i]=0;
+    const def=drumDefault(c.k,c.ts), same=DROWS.every(([x])=>cur.rows[x].every((v,j)=>!!v===!!def.rows[x][j]));
+    s.drumShape=s.drumShape||{};
+    if(same){ if(s.drumShape[c.ts]){ delete s.drumShape[c.ts][c.k]; if(!Object.keys(s.drumShape[c.ts]).length) delete s.drumShape[c.ts]; } }
+    else (s.drumShape[c.ts]=s.drumShape[c.ts]||{})[c.k]=cur;
+    return !!cur.rows[r][i];
+  }
+  const sh=dgShape(s,c); if(!sh) return false;
+  sh.rows[r][i]=sh.rows[r][i]?0:1; const ot=dgOther(r); if(ot&&sh.rows[r][i]) sh.rows[ot][i]=0;
+  return !!sh.rows[r][i];
+}
+function renderDgrid(){
+  const el=$('dgridBar'); if(!el) return;
+  const s=song(), c=s&&S.view==='sec'&&!uiPref().dgHide?dgCur(s):null, sh=c&&dgShape(s,c);
+  if(!sh){ el.classList.add('hide'); el.innerHTML=''; return; }
+  el.classList.remove('hide'); el.dataset.g=c.g;
+  const more=!!uiPref().dgMore, L=dgCombos(s);
+  const chips=L.length>1?L.map(x=>`<button class="tb${x.g===c.g?' on':''}" data-dgg="${esc(x.g)}" title="${esc(x.ts)} の小節で鳴る「${esc(drumLabel(x.k,s))}」">${esc(x.ts)} ${esc(drumLabel(x.k,s))}</button>`).join(''):`<span class="dgb-ttl">${esc(drumLabel(c.k,s))}<small>${esc(c.ts)}</small></span>`;
+  const custom=DD[c.k]&&drumCustomOf(s,c.k,c.ts);
+  el.innerHTML=`<div class="dgb-hd"><span class="lb">ドラム</span>${chips}
+    <button class="tb${s.drumTight?' on':''}" id="dgTight" title="ドラム全体の響きを短く止めます">タイト</button>
+    ${dgMoreBtn(sh.rows,more,'dgMore')}
+    ${custom?`<button class="tb" id="dgReset" title="この拍子の「${esc(DD[c.k].label)}」を最初の形に戻します">元に戻す</button>`:''}
+    <span class="dgb-sp"></span><button class="tb" id="dgFold" title="ドラムのマスを畳みます（〈ドラム〉の画面で出し直せます）">畳む</button></div>
+    ${dgGridHtml(sh.rows,sh.steps,sh.div,more)}`;
+  el.querySelectorAll('[data-dgg]').forEach(b=>b.onclick=()=>{ DGRID.sel=b.dataset.dgg; DGRID.selSec=S.secId; renderDgrid(); fitMain(); });
+  el.querySelector('#dgTight').onclick=()=>{ s.drumTight=!s.drumTight; touch(s); renderDgrid(); };
+  el.querySelector('#dgMore').onclick=()=>{ uiSet('dgMore',!more); renderDgrid(); fitMain(); };
+  const rs=el.querySelector('#dgReset'); if(rs) rs.onclick=()=>{ if(s.drumShape&&s.drumShape[c.ts]){ delete s.drumShape[c.ts][c.k]; if(!Object.keys(s.drumShape[c.ts]).length) delete s.drumShape[c.ts]; } touch(s); renderDgrid(); toast('最初の形に戻しました'); };
+  el.querySelector('#dgFold').onclick=()=>{ uiSet('dgHide',true); renderDgrid(); fitMain(); };
+  el.querySelectorAll('[data-dk]').forEach(b=>b.onclick=()=>{ const on=dgToggle(s,c,b.dataset.dk,+b.dataset.di); touch(s); renderDgrid();
+    if(on&&audio()) mdrm(ac.currentTime+0.01,b.dataset.dk); });
+}
+/* 鳴っている刻を光らせる */
+let _dgCurT=null;
+function dgridCurAt(at,g,si){
+  if(!ac) return;
+  setTimeout(()=>{ const el=$('dgridBar'); if(!el) return;
+    el.querySelectorAll('.dgc.cur').forEach(x=>x.classList.remove('cur'));
+    if(el.dataset.g!==g) return;
+    el.querySelectorAll(`.dgc[data-di="${si}"]`).forEach(x=>x.classList.add('cur'));
+    clearTimeout(_dgCurT); _dgCurT=setTimeout(()=>{ const e2=$('dgridBar'); if(e2) e2.querySelectorAll('.dgc.cur').forEach(x=>x.classList.remove('cur')); },2500);
+  },Math.max(0,(at-ac.currentTime)*1000));
 }
 function openPatternSheet(kind,scope){
   if(kind==='drum') return openDrumSheet(scope);
@@ -2768,8 +2874,10 @@ function renderSec(L,R,M){
     <span class="lb">1段の小節数</span><span class="seg">${[1,2,3,4].map(n=>`<button class="${s.barsPerRow===n?'on':''}" data-bpr="${n}">${n}</button>`).join('')}</span>
     <span class="lb">マス</span><span class="seg">${[['all','刻み'],['beat','拍'],['none','出さない']].map(m=>`<button class="${(s.gridMode||'all')===m[0]?'on':''}" data-grid="${m[0]}">${m[1]}</button>`).join('')}</span>
     <button class="tb${s.hideLyric?'':' on'}" id="bNL" title="歌詞の段を出す・隠す">歌詞</button>
+    <button class="tb${uiPref().prOpen?' on':''}" id="bPR" title="ピアノロールの小窓を出す・しまう">ピアノロール</button>
+    <span class="lb">コード図</span><span class="seg">${[['none','出さない'],['each','コードの下'],['top','曲名の下']].map(m=>`<button class="${(s.diagram||'none')===m[0]?'on':''}" data-dgm="${m[0]}">${m[1]}</button>`).join('')}</span>
   </div><div class="paper"><div class="shead"><button class="sttl" id="sTtl" title="押すと曲名を変えられます">${esc(s.name)}</button>
-    <button class="stmp" id="sTmp" title="押すとテンポを変えられます"><svg class="qn" viewBox="0 0 10 22" aria-label="四分音符"><ellipse cx="4.2" cy="18" rx="4" ry="2.9" transform="rotate(-22 4.2 18)" fill="#1a1a1a"/><rect x="7.3" y="1" width="1.2" height="16.5" fill="#1a1a1a"/></svg> = ${s.sections[0].tempo}</button></div><div class="bars" id="bars"></div><button class="addbar" id="bAddBar">＋ 小節を足す</button></div>`;
+    <button class="stmp" id="sTmp" title="押すとテンポを変えられます"><svg class="qn" viewBox="0 0 10 22" aria-label="四分音符"><ellipse cx="4.2" cy="18" rx="4" ry="2.9" transform="rotate(-22 4.2 18)" fill="#1a1a1a"/><rect x="7.3" y="1" width="1.2" height="16.5" fill="#1a1a1a"/></svg> = ${s.sections[0].tempo}</button></div><div class="dgmtop" id="dgmTop"></div><div class="bars" id="bars"></div><button class="addbar" id="bAddBar">＋ 小節を足す</button></div>`;
   bindMetaBar(M);
   const tt=$('title'); tt.classList.add('clickable'); tt.title='押すと名前を変えられます'; tt.onclick=()=>songMenu(s);
   $('bBack').onclick=()=>{ S.view='list'; resetEdit(); render(); };
@@ -2781,6 +2889,8 @@ function renderSec(L,R,M){
   M.querySelectorAll('[data-bpr]').forEach(b=>b.onclick=()=>{ s.barsPerRow=+b.dataset.bpr; touch(s); render(); });
   $('bNL').onclick=()=>{ s.hideLyric=!s.hideLyric; touch(s); render(); };
   M.querySelectorAll('[data-grid]').forEach(b=>b.onclick=()=>{ s.gridMode=b.dataset.grid; touch(s); render(); });
+  M.querySelectorAll('[data-dgm]').forEach(b=>b.onclick=()=>{ s.diagram=b.dataset.dgm; touch(s); render(); });
+  $('bPR').onclick=()=>{ uiSet('prOpen',!uiPref().prOpen); render(); };
   $('bAddBar').onclick=()=>{ s.sections[s.sections.length-1].bars.push(newBar()); touch(s); renderBars(); };
   /* 押した小節の区間を「いまの区間」にする（各操作より先に） */
   const bx=$('bars');
@@ -2960,6 +3070,7 @@ function renderBars(){
       <div class="grid" style="${chordGridBox(sec,head)}"><div class="slots" style="grid-template-columns:repeat(${cells},1fr)">${
         Array.from({length:cells},(_,t)=>`<div class="slot${t%per===0?' beat':''}${t===0?' head':''}${shownAt(sec,bi,t)?' has':''}${CDRAG&&CDRAG.slot&&CDRAG.slot.id===b.id&&CDRAG.slot.t===t?(CDRAG.full?' full':' hot'):''}" data-b="${bi}" data-t="${t}"></div>`).join('')
       }</div><div class="lay">${chips}</div></div>
+      ${s.diagram==='each'&&sorted.length?`<div class="dgmrow">${sorted.map(({c,pos})=>`<button class="dgmb" data-dgb="${b.id}" data-dgt="${c.t}" style="left:${pos/cells*100}%" title="${esc(c.c)} の押さえを変える">${dgmSvg(voicingOf(s,c))}</button>`).join('')}</div>`:''}
       <div class="mel" data-bi="${bi}">${s.view==='tab'?tabSvg(sec,b,head):staffSvg(sec,b,head)+ottHitHtml(b)+accHitHtml(b)}${melOverlay(sec,b,bi,head)}${clefHit(sec,b,head)}</div>
       ${lyricRowHtml(s,sec,b,bi,head)}</div>`);
     });
@@ -2976,6 +3087,9 @@ function renderBars(){
     const put=()=>{ const b=secOfEl(el).bars[+el.dataset.bi], n=b&&b.notes.find(x=>x.id===el.dataset.nid); if(n) n.lyric=el.value||null; return n; };
     el.oninput=put; el.onchange=()=>{ if(put()) touch(song()); }; });
   box.querySelectorAll('.mel').forEach(bindMel);
+  renderPR();
+  box.querySelectorAll('[data-dgb]').forEach(el=>el.onclick=e=>{ e.stopPropagation(); openVoicingEditor(s,[{barId:el.dataset.dgb,t:+el.dataset.dgt}],'here'); });
+  renderDgmTop();
   bindOtt(box);
   box.querySelectorAll('.acchit').forEach(el=>{
     el.addEventListener('pointerdown',e=>e.stopPropagation());
@@ -3310,7 +3424,7 @@ function renderDock(){
     if(S.loop){ lr.innerHTML=loopToolsHtml(); bindLoopTools(lr); }
     if(MI.tab==='melody') renderMelDock();
     else { $('mtools').innerHTML='<span class="sp"></span><button class="tb" id="bbUndo" title="元に戻す">↶</button><button class="tb" id="bbRedo" title="やり直す">↷</button>'; bindHist(); renderPalette(); } }
-  renderPlayer(); fitMain();
+  renderDgrid(); renderPlayer(); fitMain();
 }
 function renderPalette(){
   const sec=section(); if(!sec) return;
@@ -3390,7 +3504,7 @@ function renderPlayer(){
   P.innerHTML=seekHtml()+`<button class="tb pri" id="pPlay">${playing?'■ 止める':'▶ 鳴らす'}</button>
     <button class="tb" id="pTop" title="先頭へ戻す">⏮</button>
     <button class="tb${S.loop?' on':''}" id="pLoop" title="繰り返す（範囲があればその範囲）。長押しで席を選べます">⟳ ループ</button>
-    ${inSec?`<button class="tb ico" id="pDrum" title="ドラムの型を選ぶ・作る">${ICO.drum}<span>ドラム</span></button>
+    ${inSec?`<button class="tb ico" id="pDrum" title="ドラムの型を選ぶ">${ICO.drum}<span>ドラム</span></button>
     <button class="tb ico" id="pMix" title="音量・響き・音色">${ICO.mix}<span>ミキサー</span></button>`:''}`;
   $('pPlay').onclick=()=>playing?stop():play();
   $('pTop').onclick=()=>{ playPos=0; if(playing){ stop(true); play(0); } else updSeek(curTimeline()); };
@@ -3524,7 +3638,7 @@ function drumRec(t,type){
   return true;
 }
 function audio(){
-  if(!ac){ const C=window.AudioContext||window.webkitAudioContext; if(!C) return null; ac=new C(); buildBus(); loadDrumRec(); }
+  if(!ac){ const C=window.AudioContext||window.webkitAudioContext; if(!C) return null; ac=new C(); buildBus(); loadDrumRec(); smpBind(); }
   if(ac.state==='suspended') ac.resume();
   return ac;
 }
@@ -3668,6 +3782,203 @@ function guitarVoicing(name){
   });
   const r=best?best.notes:[]; _vcCache.set(name,r); return r;
 }
+
+/* ════════ コード図（押さえの図）════════
+   押さえは6弦→1弦のフレットの並び（null＝弾かない、0＝開放）。
+   決め方：その箇所で決めた押さえ（c.v。決めた時のコード名 c.vc と同じ時だけ効く）→ 曲で決めた押さえ（s.voicings[コード名]）→ 自動。
+   図で押さえを変えると、伴奏のギターもその押さえで鳴る（ピアノの伴奏は図だけ） */
+function autoFrets(name){ const n=guitarVoicing(name); if(!n.length) return null; const fr=[null,null,null,null,null,null]; n.forEach(o=>{ fr[o.s]=o.m-OPEN[o.s]; }); return fr; }
+function ownVoicing(s,c){ if(!c) return null; if(c.v&&c.vc===c.c) return c.v; const m=s&&s.voicings; return (m&&m[c.c])||null; }
+function voicingOf(s,c){ return ownVoicing(s,c)||autoFrets(c.c); }
+function fretNotes(fr){ const out=[]; (fr||[]).forEach((f,s)=>{ if(f!=null) out.push({s,m:OPEN[s]+f}); }); return out; }
+const sameFr=(a,b)=>JSON.stringify(a||null)===JSON.stringify(b||null);
+/* 図（縦向き。左が6弦） */
+function dgmSvg(fr){
+  if(!fr) return '';
+  const fx=fr.filter(f=>f!=null&&f>0), mx=fx.length?Math.max(...fx):0, mn=fx.length?Math.min(...fx):0;
+  const base=mx<=4?1:mn, rows=Math.max(4,Math.min(5,mx-base+1));
+  const L=12, T=13, gx=7, gy=9.5, W=L+gx*5+8, H=T+gy*rows+4;
+  const X=s=>L+s*gx, Y=f=>T+(f-base+0.5)*gy;
+  let g=`<svg class="dgm" viewBox="0 0 ${W} ${H}" width="${(W*1.3).toFixed(1)}" height="${(H*1.3).toFixed(1)}" aria-hidden="true">`;
+  for(let r=0;r<=rows;r++) g+=`<line x1="${X(0)}" y1="${T+r*gy}" x2="${X(5)}" y2="${T+r*gy}" stroke="#8a8f99" stroke-width=".8"/>`;
+  for(let s=0;s<6;s++) g+=`<line x1="${X(s)}" y1="${T}" x2="${X(s)}" y2="${T+rows*gy}" stroke="#6b7079" stroke-width="${(1.15-s*0.07).toFixed(2)}"/>`;
+  if(base===1) g+=`<rect x="${X(0)-.6}" y="${T-2.4}" width="${gx*5+1.2}" height="2.6" rx=".6" fill="#2b2e34"/>`;
+  else g+=`<text x="${L-3.5}" y="${T+gy*0.5+3}" text-anchor="end" font-size="7" font-weight="700" fill="#4b5058">${base}</text>`;
+  /* セーハ：いちばん低いフレットを、そこから1弦側へ切れ目なく押さえている時 */
+  let barre=null;
+  if(mn>0){ const idx=fr.map((f,i)=>f===mn?i:-1).filter(i=>i>=0);
+    if(idx.length>=2){ const a=idx[0], b=idx[idx.length-1]; let ok=true; for(let i=a;i<=b;i++) if(fr[i]==null||fr[i]<mn) ok=false;
+      if(ok&&b-a>=2) barre={a,b}; } }
+  if(barre) g+=`<rect x="${X(barre.a)-3.1}" y="${Y(mn)-3.1}" width="${X(barre.b)-X(barre.a)+6.2}" height="6.2" rx="3.1" fill="#2b2e34"/>`;
+  fr.forEach((f,s)=>{ const x=X(s);
+    if(f==null) g+=`<path d="M${x-2.2} ${T-8.6}l4.4 4.4M${x+2.2} ${T-8.6}l-4.4 4.4" stroke="#6b7079" stroke-width="1.1" stroke-linecap="round"/>`;
+    else if(f===0) g+=`<circle cx="${x}" cy="${T-6.4}" r="2.3" fill="none" stroke="#2b2e34" stroke-width="1"/>`;
+    else if(!(barre&&f===mn&&s>=barre.a&&s<=barre.b)) g+=`<circle cx="${x}" cy="${Y(f)}" r="3.1" fill="#2b2e34"/>`; });
+  return g+'</svg>';
+}
+/* 曲の中のコードの置き場所を探す */
+function chordAtPlace(s,p){ for(const sec of s.sections){ const b=sec.bars.find(x=>x.id===p.barId); if(b) return b.chords.find(c=>c.t===p.t)||null; } return null; }
+/* 曲名の下：「コード＋押さえ」ごとに、初めて出る順で並べる */
+function renderDgmTop(){
+  const el=$('dgmTop'), s=song(); if(!el||!s) return;
+  if(s.diagram!=='top'){ el.innerHTML=''; el.classList.add('hide'); return; }
+  const list=[];
+  flatBars(s).forEach(({b})=>b.chords.slice().sort((x,y)=>x.t-y.t).forEach(c=>{ const v=voicingOf(s,c); if(!v) return;
+    let it=list.find(x=>x.c===c.c&&sameFr(x.v,v)); if(!it){ it={c:c.c,v,places:[]}; list.push(it); } it.places.push({barId:b.id,t:c.t}); }));
+  el.classList.toggle('hide',!list.length);
+  el.innerHTML=list.map((x,i)=>`<button class="dgmb top" data-dgi="${i}" title="${esc(x.c)} の押さえを変える"><span class="dgmn">${esc(x.c)}</span>${dgmSvg(x.v)}</button>`).join('');
+  el.querySelectorAll('[data-dgi]').forEach(b=>b.onclick=()=>{ const x=list[+b.dataset.dgi]; openVoicingEditor(s,x.places,'here'); });
+}
+/* 押さえを変える画面。places＝変える箇所。〈この箇所だけ〉が既定、〈この曲のこのコード全部〉にも切り替えられる */
+function openVoicingEditor(s,places,scope){
+  const c0=places.length&&chordAtPlace(s,places[0]); if(!c0) return;
+  const name=c0.c, auto=autoFrets(name);
+  const ve={frets:(voicingOf(s,c0)||[null,null,null,null,null,null]).slice(),scope:scope||'here'};
+  const cols=5, sx=44, sy=26, padL=42, padR=16, padT=18, padB=30, gw=cols*sx, gh=5*sy, W=padL+gw+padR, H=padT+gh+padB;
+  const baseOf=()=>{ const fx=ve.frets.filter(f=>f!=null&&f>0); const mx=fx.length?Math.max(...fx):0; return mx<=cols?1:Math.min(...fx); };
+  ve.bf=baseOf();
+  const board=()=>{ const bf=ve.bf, x0=padL, y0=padT, rowY=i=>y0+(5-i)*sy, colX=f=>x0+(f-bf+0.5)*sx;
+    let g=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:360px;display:block"><rect width="${W}" height="${H}" rx="8" fill="#fff"/>`;
+    for(let c=0;c<=cols;c++) g+=`<line x1="${x0+c*sx}" y1="${y0}" x2="${x0+c*sx}" y2="${y0+gh}" stroke="#c9ccd3" stroke-width="1.1"/>`;
+    for(let i=0;i<6;i++){ g+=`<line x1="${x0}" y1="${rowY(i)}" x2="${x0+gw}" y2="${rowY(i)}" stroke="#b9bdc6" stroke-width="${1+(5-i)*0.28}"/>`;
+      g+=`<text x="${x0-26}" y="${rowY(i)+4}" text-anchor="middle" font-size="11" fill="#9aa0ab">${6-i}弦</text>`; }
+    if(bf<=1) g+=`<rect x="${x0-4}" y="${y0-2}" width="4" height="${gh+4}" fill="#1f2937"/>`;
+    for(let c=0;c<cols;c++) g+=`<text x="${x0+(c+0.5)*sx}" y="${y0+gh+24}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9aa0ab">${bf+c}</text>`;
+    for(let i=0;i<6;i++){ const f=ve.frets[i], y=rowY(i), x=x0-10;
+      if(f==null) g+=`<path d="M${x-5} ${y-5}L${x+5} ${y+5}M${x+5} ${y-5}L${x-5} ${y+5}" stroke="#9aa0ab" stroke-width="2"/>`;
+      else if(f===0) g+=`<circle cx="${x}" cy="${y}" r="5.4" fill="none" stroke="#1f2937" stroke-width="1.8"/>`;
+      else if(f>=bf&&f<bf+cols) g+=`<circle cx="${colX(f)}" cy="${y}" r="10" fill="#1f2937"/>`;
+      g+=`<rect class="vch" data-s="${i}" data-f="-1" x="${x0-34}" y="${y-sy/2}" width="34" height="${sy}" fill="transparent"/>`;
+      for(let c=0;c<cols;c++) g+=`<rect class="vch" data-s="${i}" data-f="${bf+c}" x="${x0+c*sx}" y="${y-sy/2}" width="${sx}" height="${sy}" fill="transparent"/>`; }
+    return g+'</svg>'; };
+  const n=places.length;
+  const body=()=>`<div class="vcbd">${board()}</div>
+    <p class="snote">弦を押すとフレットが決まり、もう一度で外れます。左端で ○（開放）と ×（弾かない）が入れ替わります。</p>
+    <div class="btns"><button class="tb" id="vDn">◀ 1フレット下げる</button><button class="tb" id="vUp">1フレット上げる ▶</button><button class="tb" id="vAuto">形を自動に戻す</button><button class="tb" id="vPlay">鳴らす</button></div>
+    <div class="btns"><span class="seg"><button class="${ve.scope==='here'?'on':''}" data-vsc="here">${n>1?`この押さえの所だけ（${n}か所）`:'この箇所だけ'}</button><button class="${ve.scope==='song'?'on':''}" data-vsc="song">この曲のこのコード全部</button></span></div>
+    ${accInstOf()==='piano'?'<p class="snote">伴奏がピアノの間は、図だけが変わります。</p>':''}
+    <div class="btns"><button class="tb pri" id="vOk">決める</button><button class="tb" id="vCancel">やめる</button></div>`;
+  sheet(`<h2>${esc(name)} の押さえ</h2><div id="vBody">${body()}</div>`,sh=>{
+    const redraw=()=>{ sh.querySelector('#vBody').innerHTML=body(); bind(); };
+    const bind=()=>{
+      sh.querySelectorAll('.vch').forEach(h=>h.onclick=()=>{ const si=+h.dataset.s, f=+h.dataset.f;
+        if(f<0) ve.frets[si]=ve.frets[si]===null?0:(ve.frets[si]===0?null:0);
+        else ve.frets[si]=ve.frets[si]===f?null:f;
+        if(ve.frets[si]!=null&&audio()) pluck(ac.currentTime+0.02,OPEN[si]+ve.frets[si],0.26,si);
+        redraw(); });
+      const shift=d=>{ const f=ve.frets.map(x=>(x==null||x===0)?x:x+d); if(f.some((x,i)=>ve.frets[i]>0&&(x>15||x<1))) return;
+        ve.frets=f; ve.bf=baseOf(); redraw(); };
+      sh.querySelector('#vDn').onclick=()=>shift(-1); sh.querySelector('#vUp').onclick=()=>shift(1);
+      sh.querySelector('#vAuto').onclick=()=>{ if(auto){ ve.frets=auto.slice(); ve.bf=baseOf(); redraw(); } };
+      sh.querySelector('#vPlay').onclick=()=>{ if(audio()) strumAt(ac.currentTime+0.03,name,'D',1,1,ve.frets); };
+      sh.querySelectorAll('[data-vsc]').forEach(b=>b.onclick=()=>{ ve.scope=b.dataset.vsc; redraw(); });
+      sh.querySelector('#vCancel').onclick=closeSheet;
+      sh.querySelector('#vOk').onclick=()=>{
+        if(!ve.frets.some(f=>f!=null)) return toast('1本以上の弦を押さえてください');
+        const fr=ve.frets.slice();
+        if(ve.scope==='song'){ s.voicings=s.voicings||{};
+          if(sameFr(fr,auto)) delete s.voicings[name]; else s.voicings[name]=fr;
+          flatBars(s).forEach(({b})=>b.chords.forEach(c=>{ if(c.c===name){ delete c.v; delete c.vc; } })); }
+        else { const songV=(s.voicings&&s.voicings[name])||auto;
+          places.forEach(p=>{ const c=chordAtPlace(s,p); if(!c) return;
+            if(sameFr(fr,songV)){ delete c.v; delete c.vc; } else { c.v=fr; c.vc=c.c; } }); }
+        touch(s); closeSheet(); renderBars(); toast('押さえを変えました'); };
+    };
+    bind();
+  });
+}
+
+/* ════════ ピアノロール（動かせる小窓・白い紙）════════
+   縦が音の高さ（五線譜に書いた高さ）、横が時間。小節の幅は拍の数に比べる（テンポでは変えない）。
+   伴奏のコードの音は、そのコードが鳴っている間だけ薄い帯で重ねる。
+   開いているか・位置・大きさ・横の拡大はこの端末に覚える */
+const PR={rh:18, kw:58, hh:40};
+const PR_SHARP=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'], PR_FLAT=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
+function prFlat(sec){ const k=sec.minor?({Dm:'F',Gm:'Bb',Cm:'Eb',Fm:'Ab',Bbm:'Db',Ebm:'Gb'})[sec.key+'m']:sec.key; return ['F','Bb','Eb','Ab','Db','Gb'].includes(k||sec.key); }
+function prBarQ(ts){ const [n,d]=ts.split('/').map(Number); return n*4/d; }   /* 小節の長さ（四分音符いくつ分） */
+function prModel(s){
+  const pxq=uiPref().prZoom||56, bars=[], notes=[], bands=[];
+  let x=0, lo=127, hi=0;
+  const F=flatBars(s);
+  F.forEach(({sec,b},gi)=>{ const q=prBarQ(sec.ts), w=q*pxq;
+    bars.push({id:b.id,gi,x,w,ts:sec.ts,q,flat:prFlat(sec)});
+    (b.notes||[]).forEach(n=>{ if(n.kind==='rest') return;
+      (n.stops||[]).forEach(o=>{ if(typeof o.f!=='number') return; const m=OPEN[o.s]+o.f+12;
+        lo=Math.min(lo,m); hi=Math.max(hi,m);
+        notes.push({x:x+n.start/TPQ*pxq,w:Math.max(4,n.len/TPQ*pxq),m,flat:prFlat(sec),tie:!!(o.t&&o.t.link==='tie')}); }); });
+    x+=w; });
+  /* コードの区切り（食いは八分ひとつ前から。鳴り方と同じ） */
+  const pts=[]; F.forEach(({sec,b},gi)=>{ const B=bars[gi]; b.chords.forEach(c=>{ const at=B.x+Math.max(0,(c.t-(c.syn?1:0)))*pxq/2; pts.push({x:gi===0?Math.max(0,at):at,c:c.c}); }); });
+  pts.sort((a,b)=>a.x-b.x);
+  pts.forEach((p,i)=>{ const e=i+1<pts.length?pts[i+1].x:x, cp=chordPcs(p.c); if(cp&&e>p.x) bands.push({x:p.x,w:e-p.x,c:p.c,set:cp.set}); });
+  if(hi<lo){ lo=60; hi=84; }
+  lo=Math.max(28,lo-4); hi=Math.min(108,hi+4);
+  if(hi-lo<24){ const mid=Math.round((hi+lo)/2); lo=mid-12; hi=mid+12; }
+  return {pxq,bars,notes,bands,lo,hi,W:x};
+}
+let PRM=null;
+function renderPR(){
+  let el=$('proll'); const s=song(), open=!!uiPref().prOpen&&s&&S.view==='sec';
+  if(!open){ if(el) el.remove(); PRM=null; return; }
+  const P=uiPref(), vw=window.innerWidth, vh=window.innerHeight;
+  if(!el){ el=document.createElement('div'); el.id='proll'; el.className='proll';
+    const w=Math.min(P.prW||760,vw-16), h=Math.min(P.prH||380,vh-80);
+    el.style.width=w+'px'; el.style.height=h+'px';
+    el.style.left=Math.max(8,Math.min(P.prX!=null?P.prX:(vw-w)/2,vw-w-8))+'px';
+    el.style.top=Math.max(8,Math.min(P.prY!=null?P.prY:70,vh-h-8))+'px';
+    document.body.appendChild(el); }
+  const keep=el.querySelector('.pr-sc'), sl=keep?keep.scrollLeft:null, st=keep?keep.scrollTop:null;
+  const M=prModel(s); PRM=M; const RH=PR.rh, rows=M.hi-M.lo+1, H=rows*RH, y=m=>(M.hi-m)*RH, isB=m=>[1,3,6,8,10].includes(m%12);
+  const showBand=P.prBand!==false;
+  let rowbg='', keys='', grid='', hdr='', band='', nts='';
+  for(let m=M.lo;m<=M.hi;m++){
+    if(isB(m)) rowbg+=`<div class="pr-rb" style="top:${y(m)}px"></div>`;
+    keys+=`<div class="pr-k ${isB(m)?'b':'w'}${m%12===0?' c':''}" style="top:${y(m)}px">${m%12===0?'C'+(Math.floor(m/12)-1):''}</div>`; }
+  M.bars.forEach(B=>{ const comp=B.ts.endsWith('/8'), sub=comp?B.q*2:B.q*2, bt=comp?3:2;     /* 8分ごとの線、拍の線 */
+    for(let i=0;i<sub;i++){ const xx=B.x+i*B.w/sub; grid+=`<div class="pr-vl${i===0?' bar':i%bt===0?' beat':''}" style="left:${xx}px"></div>`; }
+    hdr+=`<div class="pr-bn" style="left:${B.x+5}px">${B.gi+1}</div>`; });
+  grid+=`<div class="pr-vl bar" style="left:${M.W}px"></div>`;
+  M.bands.forEach(b=>{ hdr+=`<div class="pr-cn" style="left:${b.x+6}px">${esc(b.c)}</div>`;
+    if(showBand) for(let m=M.lo;m<=M.hi;m++) if(b.set.includes(m%12)) band+=`<div class="pr-bd" style="left:${b.x+2}px;top:${y(m)+3}px;width:${Math.max(2,b.w-4)}px;height:${RH-6}px"></div>`; });
+  M.notes.forEach(n=>{ const nm=(n.flat?PR_FLAT:PR_SHARP)[n.m%12];
+    nts+=`<div class="pr-n${n.tie?' tie':''}" style="left:${n.x+1}px;top:${y(n.m)+1}px;width:${Math.max(3,n.w-2)}px;height:${RH-2}px" title="${nm}${Math.floor(n.m/12)-1}">${n.w>22?`<span>${nm}</span>`:''}</div>`; });
+  el.innerHTML=`<div class="pr-tb" id="prGrip"><span class="pr-grip"></span><span class="pr-ttl">ピアノロール</span><span class="pr-sp"></span>
+      <button class="pr-b${showBand?' on':''}" id="prBand" title="伴奏のコードの音を薄く重ねる">伴奏の音</button>
+      <span class="pr-zm"><button class="pr-b" id="prZo" title="横を縮める">−</button><span>横</span><button class="pr-b" id="prZi" title="横を広げる">＋</button></span>
+      <button class="pr-b" id="prX">閉じる</button></div>
+    <div class="pr-sc"><div class="pr-in" style="width:${PR.kw+M.W+40}px;height:${PR.hh+H}px">
+      <div class="pr-hd" style="width:${M.W+40}px">${hdr}</div>
+      <div class="pr-corner"></div>
+      <div class="pr-keys" style="height:${H}px">${keys}</div>
+      <div class="pr-roll" style="width:${M.W+40}px;height:${H}px">${rowbg}${grid}${band}${nts}<div class="pr-ph hide" id="prPh"></div></div>
+    </div></div>
+    <div class="pr-rz" id="prRz" title="大きさを変える"></div>`;
+  const sc=el.querySelector('.pr-sc');
+  if(sl!=null){ sc.scrollLeft=sl; sc.scrollTop=st; }
+  else { const ns=M.notes.length?M.notes.reduce((a,n)=>a+n.m,0)/M.notes.length:72; sc.scrollTop=Math.max(0,y(Math.round(ns))-sc.clientHeight/2+PR.hh); }
+  el.querySelector('#prBand').onclick=()=>{ uiSet('prBand',!showBand); renderPR(); };
+  const zoom=f=>{ const z=Math.max(24,Math.min(160,Math.round((P.prZoom||56)*f))); const c=(sc.scrollLeft+sc.clientWidth/2)/((P.prZoom||56));
+    uiSet('prZoom',z); renderPR(); const s2=$('proll').querySelector('.pr-sc'); s2.scrollLeft=c*z-s2.clientWidth/2; };
+  el.querySelector('#prZi').onclick=()=>zoom(1.25); el.querySelector('#prZo').onclick=()=>zoom(0.8);
+  el.querySelector('#prX').onclick=()=>{ uiSet('prOpen',false); render(); };
+  /* 見出しを持って動かす・右下で大きさを変える */
+  const drag=(h,fn,done)=>h.addEventListener('pointerdown',e=>{ if(e.target.closest('button')) return; e.preventDefault();
+    const sx=e.clientX, sy=e.clientY, r=el.getBoundingClientRect();
+    const mv=ev=>fn(r,ev.clientX-sx,ev.clientY-sy), up=()=>{ window.removeEventListener('pointermove',mv); window.removeEventListener('pointerup',up); done(); };
+    window.addEventListener('pointermove',mv); window.addEventListener('pointerup',up); });
+  drag(el.querySelector('#prGrip'),(r,dx,dy)=>{ el.style.left=Math.max(0,Math.min(window.innerWidth-80,r.left+dx))+'px'; el.style.top=Math.max(0,Math.min(window.innerHeight-46,r.top+dy))+'px'; },
+    ()=>{ uiSet('prX',parseFloat(el.style.left)); uiSet('prY',parseFloat(el.style.top)); });
+  drag(el.querySelector('#prRz'),(r,dx,dy)=>{ el.style.width=Math.max(320,r.width+dx)+'px'; el.style.height=Math.max(200,r.height+dy)+'px'; },
+    ()=>{ uiSet('prW',el.offsetWidth); uiSet('prH',el.offsetHeight); });
+}
+/* 再生の位置。鳴らしている間、追う設定なら位置が見えるように送る */
+function prHead(barId,frac){
+  const el=$('proll'), ph=el&&el.querySelector('#prPh'); if(!ph||!PRM) return;
+  const B=barId&&PRM.bars.find(b=>b.id===barId); if(!B){ ph.classList.add('hide'); return; }
+  const x=B.x+frac*B.w; ph.style.left=x+'px'; ph.classList.remove('hide');
+  if(S.follow!==false&&playing){ const sc=el.querySelector('.pr-sc'), vx=x-sc.scrollLeft, vis=sc.clientWidth-PR.kw;
+    if(vx<0||vx>vis*0.8) sc.scrollLeft=Math.max(0,x-vis*0.2); }
+}
 /* 伴奏の楽器（曲ごと）：'guitar'｜'piano' */
 function accInstOf(){ const s=song(); return (s&&s.accInst)||'guitar'; }
 /* ピアノの伴奏の押さえ：左手はベース（E2〜D#3）、右手はコードの音を G3 から上へ密集させて並べる */
@@ -3688,9 +3999,9 @@ function pianoChordAt(t,name,kind,amp,dur){
   if(!upper) pianoMel(t,v.bass,0.24*a,d,o,gBus);
   v.up.forEach((m,i)=>pianoMel(t+(up?0.004*i:0),m,(up?0.13:0.15)*a,d,o,gBus));
 }
-function strumAt(t,name,kind,amp,dur){
+function strumAt(t,name,kind,amp,dur,v){
   if(accInstOf()==='piano') return pianoChordAt(t,name,kind,amp,dur);
-  const n=guitarVoicing(name); if(!n.length) return;
+  const n=v?fretNotes(v):guitarVoicing(name); if(!n.length) return;
   let list=n;
   if(kind==='T') list=n.slice(1);               // ベースを除いて鳴らす
   const up=kind==='U'; if(up) list=list.slice().reverse().slice(0,Math.max(3,list.length-2));
@@ -3698,11 +4009,11 @@ function strumAt(t,name,kind,amp,dur){
   const SW=[0.72,0.8,0.92,1.05,1.12,1.18];          /* 高い弦（3度・7度が乗りやすい）を持ち上げ、低い弦を控える */
   list.forEach((o,i)=>pluck(t+i*spread,o.m,base*SW[o.s],o.s,true));
 }
-function arpAt(t,name,tok,amp,dur){
+function arpAt(t,name,tok,amp,dur,v){
   if(accInstOf()==='piano'){ const v=pianoVoicing(name); if(!v) return;
     const m=tok==='b'?v.bass:tok==='a'?v.bass+7:v.up[Math.min(Math.max(0,(+tok||1)-1),v.up.length-1)];
     pianoMel(t,m,(tok==='b'||tok==='a'?0.24:0.17)*(amp||1),Math.max(0.2,Math.min(2.5,(dur||0.5)*1.6)),{lite:true},gBus); return; }
-  const n=guitarVoicing(name); if(!n.length) return;
+  const n=v?fretNotes(v):guitarVoicing(name); if(!n.length) return;
   const o=tok==='b'?n[0]:tok==='a'?(n[1]||n[0]):n[Math.min(+tok,n.length-1)];
   pluck(t,o.m,(amp||1)*(tok==='b'||tok==='a'?0.26:0.22),o.s);
 }
@@ -3949,9 +4260,65 @@ function noiseSrc(t,dur){
   if(!_noise||_noise.sampleRate!==ac.sampleRate){ const len=Math.floor(ac.sampleRate*0.5); _noise=ac.createBuffer(1,len,ac.sampleRate); const d=_noise.getChannelData(0); for(let i=0;i<len;i++) d[i]=Math.random()*2-1; }
   const s=ac.createBufferSource(); s.buffer=_noise; s.loop=true; s.start(t); s.stop(t+dur); return s;
 }
+/* ══ ドラムの音——ScoreLineTAB と同じ録音（共通の音 sound.js の MusyngKite）══
+   強さ・鳴らす長さ・〈タイト〉の長さは ScoreLineTAB（ことりノーム）の値のまま。
+   読み込みが済むまで・読めない時は、今までの録音（Virtuosity Drums）、それも無い音は合成の音で鳴らす */
+const SMP_DRUM={ bd:{name:'kick',vel:0.833}, sn:{name:'snare',vel:1.016}, hhs:{name:'hihat',vel:0.595},
+  cr:{name:'crash',vel:1.040}, rd:{name:'ride',vel:1.082},
+  hh:{name:'hihat-open',vel:0.802}, rm:{name:'rim',vel:1.088}, th:{name:'tom-high',vel:1.196}, tl:{name:'tom-low',vel:0.995} };
+const SMP_NORMAL={ kick:{dur:0.32,release:0.12}, snare:{dur:0.35,release:0.12}, hihat:{dur:0.16,release:0.08},
+  crash:{dur:1.6,release:0.6}, ride:{dur:0.8,release:0.3},
+  'hihat-open':{dur:0.8,release:0.25}, rim:{dur:0.16,release:0.08}, 'tom-high':{dur:0.4,release:0.15}, 'tom-low':{dur:0.45,release:0.15} };
+const SMP_TIGHT={ kick:{dur:0.15,release:0.05}, snare:{dur:0.12,release:0.05}, hihat:{dur:0.045,release:0.035},
+  crash:{dur:0.35,release:0.15}, ride:{dur:0.25,release:0.10},
+  'hihat-open':{dur:0.18,release:0.08}, rim:{dur:0.06,release:0.04}, 'tom-high':{dur:0.15,release:0.06}, 'tom-low':{dur:0.18,release:0.07} };
+const DRUM_SMP_MIX=0.55;                             /* ScoreLineTAB と同じ一律の絞り */
+function drumTight(){ const s=song(); return !!(s&&s.drumTight); }
+let _smpAC=null, _smpLoading=false, _smpBus=null, _smpBusOf=null, _ohIn=null, smpOpenHat=null;
+function smpOk(){ return !!(window.DS&&DS.sound&&DS.sound.drum); }
+function smpBind(){
+  if(!smpOk()||!ac) return;
+  if(_smpAC!==ac){ try{ DS.sound.use({context:ac}); _smpAC=ac; }catch(e){ return; } }
+  if(!_smpLoading){ _smpLoading=true; try{ DS.sound.load('drums').catch(()=>{}); }catch(e){} }
+}
+/* ドラムの帯（dBus）の手前に置く絞り。ミキサーを組み直したら作り直す */
+function smpBus(){
+  if(_smpBus&&_smpBusOf===dBus) return _smpBus;
+  _smpBus=ac.createGain(); _smpBus.gain.value=DRUM_SMP_MIX; _smpBus.connect(dBus); _smpBusOf=dBus;
+  /* オープンハイハットだけ、高い音を持ち上げて明るく少し大きく通す（ScoreLineTAB と同じ） */
+  const shelf=ac.createBiquadFilter(), g=ac.createGain();
+  shelf.type='highshelf'; shelf.frequency.value=6000; shelf.gain.value=6; g.gain.value=Math.pow(10,3/20);
+  shelf.connect(g); g.connect(_smpBus); _ohIn=shelf;
+  return _smpBus;
+}
+function smpDrum(t,type){
+  if(!smpOk()||!ac||!dBus) return false;
+  if(_smpAC!==ac) smpBind();
+  if(_smpAC!==ac||!DS.sound.isReady('drums')) return false;
+  const d=SMP_DRUM[type]; if(!d) return false;
+  const bus=smpBus(), o={time:t,vel:d.vel,dest:type==='hh'?_ohIn:bus}, len=(drumTight()?SMP_TIGHT:SMP_NORMAL)[d.name];
+  if(len){ o.dur=len.dur; o.release=len.release; }
+  try{ const v=DS.sound.drum(d.name,o); if(type==='hh') smpOpenHat=v; return true; }catch(e){ return false; }
+}
+function smpCreditsHtml(){ try{ return smpOk()&&DS.sound.creditsHtml?DS.sound.creditsHtml(['drums']):''; }catch(e){ return ''; } }
 function mdrm(t,type){
   const bus=dBus;
-  if(drumRec(t,type)) return;                         /* 録音があれば録音で鳴らす */
+  if((type==='hhs'||type==='hh')&&smpOpenHat){ try{ smpOpenHat.stop(t); }catch(_){} smpOpenHat=null; }   /* 閉じたら開きの音は止まる */
+  if(smpDrum(t,type)) return;                         /* 共通の録音で鳴らせたら、それで */
+  if(drumRec(t,type)) return;                         /* 今までの録音があれば録音で鳴らす */
+  const tight=drumTight();
+  if(type==='rm'){
+    const nR=noiseSrc(t,0.05), bR=ac.createBiquadFilter(), gR=ac.createGain();
+    bR.type='bandpass'; bR.frequency.value=1900; bR.Q.value=3;
+    gR.gain.setValueAtTime(0.5,t); gR.gain.exponentialRampToValueAtTime(0.001,t+0.05);
+    nR.connect(bR); bR.connect(gR); gR.connect(bus); return;
+  }
+  if(type==='th'||type==='tl'){
+    const f0=(type==='th')?220:140, lenT=tight?0.18:0.4, oT=ac.createOscillator(), gT=ac.createGain();
+    oT.type='sine'; oT.frequency.setValueAtTime(f0*1.6,t); oT.frequency.exponentialRampToValueAtTime(f0,t+0.05);
+    gT.gain.setValueAtTime(0.0001,t); gT.gain.exponentialRampToValueAtTime(0.6,t+0.004); gT.gain.exponentialRampToValueAtTime(0.001,t+lenT);
+    oT.connect(gT); gT.connect(bus); oT.start(t); oT.stop(t+lenT+0.02); return;
+  }
   if(type==='rd') type='hhs';
   if(type==='cr'){                                   /* クラッシュシンバル：明るい雑音が長く尾を引く。倍音はごく薄く */
     const out=ac.createGain(); out.gain.value=0.55; out.connect(bus);
@@ -4015,39 +4382,63 @@ const ACC={
   travis:{label:'フィンガーピッキング（ベース交互）',meters:['4/4','2/4'],div:2,seq:['b','3','a','4'],arp:true},
   arp68 :{label:'3連アルペジオ（6/8）',meters:['6/8'],div:3,seq:['b','1','2','3','2','1'],arp:true},
 };
-const DRUM={
-  none     :{label:'鳴らさない'},
-  beat8    :{label:'8ビート',beats:4,div:2,HH:[1,1,1,1,1,1,1,1],SN:[0,0,1,0,0,0,1,0],BD:[1,0,0,0,1,0,0,0]},
-  beat16   :{label:'16ビート',beats:4,div:4,HH:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],SN:[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],BD:[1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]},
-  shuffle8 :{label:'8シャッフル',beats:4,div:3,HH:[1,0,1,1,0,1,1,0,1,1,0,1],SN:[0,0,0,1,0,0,0,0,0,1,0,0],BD:[1,0,0,0,0,0,1,0,0,0,0,0]},
-  shuffle16:{label:'16シャッフル',beats:4,div:6,HH:[1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1],SN:[0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0],BD:[1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]},
-  triplet8 :{label:'トリプレット',beats:4,div:3,HH:[1,1,1,1,1,1,1,1,1,1,1,1],SN:[0,0,0,1,0,0,0,0,0,1,0,0],BD:[1,0,0,0,0,0,1,0,0,0,0,0]},
-  waltz    :{label:'ワルツ',beats:3,div:2,HH:[1,1,1,1,1,1],SN:[0,0,1,0,1,0],BD:[1,0,0,0,0,0]},
-  six8     :{label:'6/8のリズム',beats:2,div:3,compound:true,HH:[1,1,1,1,1,1],SN:[0,0,0,1,0,0],BD:[1,0,0,0,0,0]},
+/* ══ ドラムの型——ScoreLineTAB と同じ仕様（ことりノームと同じ6つ）══
+   型は 4/4 の形で持ち、拍子の分子（x/8 は8分を1拍と数える）の数だけ拍を並べる。
+   4拍より長ければ足りない拍は空、短ければ切り詰める。
+   ただし 3/4 の8ビートは旧ワルツ、6/8 の8ビートは旧「6/8のリズム」を最初の形にする（今までの曲の鳴り方を変えないため）。
+   直した形は曲の drumShape['拍子'][型] に覚える（〈元に戻す〉で最初の形へ）。
+   自作の型（'u:'＋番号）は今までの曲のために残す */
+const DD={
+  beat4    :{label:'4分',        steps:4, div:1, hhs:[0,0,0,0], sn:[0,0,1,0], bd:[1,0,0,0]},
+  beat8    :{label:'8ビート',    steps:8, div:2, hhs:[1,1,1,1,1,1,1,1], sn:[0,0,1,0,0,0,1,0], bd:[1,0,0,0,1,0,0,0]},
+  beat16   :{label:'16ビート',   steps:16,div:4, hhs:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], sn:[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], bd:[1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]},
+  triplet8 :{label:'トリプレット',steps:12,div:3, hhs:[1,1,1,1,1,1,1,1,1,1,1,1], sn:[0,0,0,1,0,0,0,0,0,1,0,0], bd:[1,0,0,0,0,0,1,0,0,0,0,0]},
+  shuffle8 :{label:'8シャッフル',steps:12,div:3, hhs:[1,0,1,1,0,1,1,0,1,1,0,1], sn:[0,0,0,1,0,0,0,0,0,1,0,0], bd:[1,0,0,0,0,0,1,0,0,0,0,0]},
+  shuffle16:{label:'16シャッフル',steps:24,div:6, hhs:[1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1], sn:[0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0], bd:[1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]},
 };
+const DRUM_ORDER=['beat4','beat8','beat16','triplet8','shuffle8','shuffle16'];
+const DD_METER={ '3/4':{beat8:{hhs:[1,1,1,1,1,1],sn:[0,0,1,0,1,0],bd:[1,0,0,0,0,0]}},
+                 '6/8':{beat8:{hhs:[1,0,1,0,1,0,1,0,1,0,1,0],sn:[0,0,0,0,0,0,1,0,0,0,0,0],bd:[1,0,0,0,0,0,0,0,0,0,0,0]}} };
 const DEF_ACC={'4/4':'basic8','3/4':'waltz','2/4':'du8','6/8':'arp68'};
-const DEF_DRUM={'4/4':'beat8','3/4':'waltz','2/4':'beat8','6/8':'six8'};
+const DEF_DRUM={'4/4':'beat8','3/4':'beat8','2/4':'beat8','6/8':'beat8'};
+const DRUM_OLD={waltz:'beat8',six8:'beat8'};          /* 古い型の名前の引き継ぎ */
 function beatsOf(ts){ const [n,d]=ts.split('/').map(Number); return d===8?n/3:n; }
 function accOk(k,ts){ const a=ACC[k]; return !!a&&(a.meters==='all'||a.meters.includes(ts)); }
-/* ドラムの型。rows は行ごとの並び（1拍を div に割る）。bd=バスドラム sn=スネア hhs=ハイハット閉じ hh=開き rd=ライド cr=クラッシュ
-   自作の型は曲の drumPats に入れ、'u:'＋番号で指す */
-const DROWS=[['cr','クラッシュ'],['rd','ライド'],['hh','ハイハット（開き）'],['hhs','ハイハット（閉じ）'],['sn','スネア'],['bd','バスドラム']];
+/* 行（ScoreLineTAB・ことりノームと同じ9行）。bd=バスドラム sn=スネア hhs=ハイハット hh=オープンハイハット rd=ライド cr=クラッシュ
+   rm=リム th=ハイタム tl=ロータム。「ほかの音」（DROWS_EXTRA）はふだんたたむ */
+const DROWS=[['cr','クラッシュ'],['rd','ライド'],['hh','オープンハイハット'],['hhs','ハイハット'],['rm','リム'],['sn','スネア'],['th','ハイタム'],['tl','ロータム'],['bd','バスドラム']];
+const DROWS_EXTRA={hh:1,rm:1,th:1,tl:1};
+function drumN(ts){ return +ts.split('/')[0]||4; }
+function drumSteps(k,ts){ return Math.max(1,Math.round(DD[k].steps*drumN(ts)/4)); }
+/* その拍子での最初の形 */
+function drumDefault(k,ts){
+  const n=drumSteps(k,ts), src=(DD_METER[ts]&&DD_METER[ts][k])||DD[k], p={steps:n,div:DD[k].div,rows:{}};
+  DROWS.forEach(([r])=>{ p.rows[r]=[]; for(let i=0;i<n;i++) p.rows[r].push((src[r]&&src[r][i])?1:0); });
+  return p;
+}
+function drumCustomOf(s,k,ts){ const m=s&&s.drumShape&&s.drumShape[ts], c=m&&m[k];
+  return (c&&c.steps===drumSteps(k,ts)&&c.div===DD[k].div&&c.rows)?c:null; }
+/* 型と拍子に合う形（直してあればそちら） */
+function drumShapeOf(s,k,ts){ if(!DD[k]) return null; return drumCustomOf(s,k,ts)||drumDefault(k,ts); }
 function userPat(k,s){ if(!k||k.slice(0,2)!=='u:') return null; const id=k.slice(2), L=[];
   if(s) L.push(s); (db.songs||[]).forEach(x=>L.push(x));
   for(const x of L){ const p=x&&x.drumPats&&x.drumPats[id]; if(p) return p; } return null; }
-function drumPat(k,s){
-  if(!k||k==='none') return null;
+/* 鳴らす形。steps があれば「小節を steps に割る」、無ければ「1拍を div に割る」（自作の型・小節ごとの打ち込み） */
+function drumPat(k,s,ts){
+  if(!k||k==='none') return null; s=s||song();
   const u=userPat(k,s); if(u) return {label:u.name,beats:u.beats,div:u.div,compound:!!u.compound,rows:u.rows,user:true};
-  const D=DRUM[k]; if(!D||!D.HH) return null;
-  return {label:D.label,beats:D.beats,div:D.div,compound:!!D.compound,rows:{bd:D.BD,sn:D.SN,hhs:D.HH}};
+  if(!DD[k]) return null;
+  const sh=drumShapeOf(s,k,ts||'4/4'); return {label:DD[k].label,steps:sh.steps,div:sh.div,rows:sh.rows};
 }
-function drumLabel(k,s){ if(k==='none') return '鳴らさない'; const p=drumPat(k,s); return p?p.label:'—'; }
-function drumOk(k,ts,s){ if(k==='none') return true; const p=drumPat(k,s); if(!p) return false;
+function drumLabel(k,s){ if(k==='none') return '鳴らさない'; if(DD[k]) return DD[k].label; const p=drumPat(k,s); return p?p.label:'—'; }
+function drumOk(k,ts,s){ if(k==='none'||DD[k]) return true; const p=drumPat(k,s); if(!p) return false;
   const compound=ts==='6/8'; if(!!p.compound!==compound) return false; return p.beats%beatsOf(ts)===0; }
 const accList=ts=>Object.keys(ACC).filter(k=>accOk(k,ts));
-const drumList=(ts,s)=>{ s=s||song(); return Object.keys(DRUM).concat(Object.keys((s&&s.drumPats)||{}).map(id=>'u:'+id)).filter(k=>drumOk(k,ts,s)); };
+const drumList=(ts,s)=>{ s=s||song(); return ['none'].concat(DRUM_ORDER,Object.keys((s&&s.drumPats)||{}).map(id=>'u:'+id)).filter(k=>drumOk(k,ts,s)); };
 function fitPatterns(sec,s){
   if(!accOk(sec.accomp,sec.ts)) sec.accomp=DEF_ACC[sec.ts];
+  if(DRUM_OLD[sec.drum]) sec.drum=DRUM_OLD[sec.drum];
+  sec.bars.forEach(b=>{ if(DRUM_OLD[b.drum]) b.drum=DRUM_OLD[b.drum]; });
   if(!drumOk(sec.drum,sec.ts,s)) sec.drum=DEF_DRUM[sec.ts];
   sec.bars.forEach(b=>{ if(b.accomp&&!accOk(b.accomp,sec.ts)) b.accomp=null; if(b.drum&&!drumOk(b.drum,sec.ts,s)) b.drum=null;
     if(b.drumHits&&(b.drumHits.beats!==beatsOf(sec.ts)||!!b.drumHits.compound!==(sec.ts==='6/8'))) delete b.drumHits; });
@@ -4061,16 +4452,17 @@ function buildTimeline(secs){
   secs.forEach(sec=>{ const {cells:n,per}=tsInfo(sec.ts), nb=beatsOf(sec.ts);
     sec.bars.forEach(b=>{
       const tempo=b.tempo||sec.tempo, bd=60/tempo, cd=bd/per, g0=cells.length;
-      bars.push({id:b.id,secId:sec.id,t:time,nb,bd,dur:nb*bd,first:sec.bars[0]===b,bi:sec.bars.indexOf(b),accomp:b.accomp||sec.accomp,drum:b.drum||sec.drum,hits:b.drumHits||null});
+      bars.push({id:b.id,secId:sec.id,ts:sec.ts,t:time,nb,bd,dur:nb*bd,first:sec.bars[0]===b,bi:sec.bars.indexOf(b),accomp:b.accomp||sec.accomp,drum:b.drum||sec.drum,hits:b.drumHits||null});
       melEvents(sec,b,time,(per===3?bd/1.5:bd)/TPQ).forEach(m=>mel.push(m));
       for(let i=0;i<n;i++){ cells.push(time); time+=cd; }
-      b.chords.forEach(c=>{ const g=Math.max(0,g0+c.t-(c.syn?1:0)); chords.push({g,c:c.c}); if(c.syn&&g0+c.t>0) ants.push(g); });
+      b.chords.forEach(c=>{ const g=Math.max(0,g0+c.t-(c.syn?1:0)); chords.push({g,c:c.c,v:ownVoicing(song(),c)}); if(c.syn&&g0+c.t>0) ants.push(g); });
     });
   });
   chords.sort((a,b)=>a.g-b.g);
-  const segs=chords.map(c=>({t:cells[c.g],c:c.c}));
+  const segs=chords.map(c=>({t:cells[c.g],c:c.c,v:c.v}));
   const EPS=0.002;
-  const chordAt=t=>{ let r=null; for(const s of segs){ if(s.t<=t+EPS) r=s.c; else break; } return r; };
+  const segAt=t=>{ let r=null; for(const s of segs){ if(s.t<=t+EPS) r=s; else break; } return r; };
+  const chordAt=t=>{ const r=segAt(t); return r&&r.c; };
   /* 食い：食った位置（a）でバスドラムとシンバル、元の拍（o）では伴奏もドラムも打ち直さない（タイ） */
   const ANTS=ants.filter(g=>cells[g+1]!=null).map(g=>({a:cells[g],o:cells[g+1]}));
   const isO=t=>ANTS.some(x=>Math.abs(x.o-t)<EPS);
@@ -4087,7 +4479,7 @@ function buildTimeline(secs){
     /* 強さ：拍の頭＝1、8分の裏＝0.9、16分の裏＝0.85。裏で弾いて、すぐ後の強い位置（8分の表・拍の頭）で弾かない時はシンコペーションとして 1 */
     const live=times.filter(x=>!(isO(x.t)&&!A.arp));
     const hitAt=t=>live.some(y=>Math.abs(y.t-t)<EPS);
-    live.forEach(x=>{ const c=chordAt(x.t); if(!c) return;
+    live.forEach(x=>{ const sg=segAt(x.t), c=sg&&sg.c, v=sg&&sg.v; if(!c) return;
       const pos=(x.t-bar.t)/bar.bd, fr=pos-Math.floor(pos+EPS);
       let amp=1;
       if(fr>EPS&&fr<1-EPS){
@@ -4096,15 +4488,18 @@ function buildTimeline(secs){
         const sync=next<end-EPS&&!hitAt(next)&&!isO(next)?true:(next<end-EPS&&isO(next));
         amp=sync?1:(half?0.9:0.85);
       }
-      ev.push({t:x.t,type:A.arp?'arp':'strum',k:x.k,c,amp}); });
+      ev.push({t:x.t,type:A.arp?'arp':'strum',k:x.k,c,v,amp}); });
     /* ドラム：小節で打ち込んであればそれ、無ければ型。打ち込みで「打ち込んだとおり」なら自動のシンバル・食いの合わせは入れない */
-    const P=bar.hits?{div:bar.hits.div,rows:bar.hits.rows}:drumPat(bar.drum), auto=!bar.hits||bar.hits.cym!=='manual';
-    if(P){ const steps=bar.nb*P.div, sd=bar.bd/P.div, R=P.rows||{}, at=(k,i)=>{ const r=R[k]; return r&&r.length?r[i%r.length]:0; };
+    const P=bar.hits?{div:bar.hits.div,rows:bar.hits.rows}:drumPat(bar.drum,null,bar.ts), auto=!bar.hits||bar.hits.cym!=='manual';
+    if(P){ const steps=P.steps||bar.nb*P.div, sd=P.steps?bar.dur/P.steps:bar.bd/P.div, R=P.rows||{}, at=(k,i)=>{ const r=R[k]; return r&&r.length?r[i%r.length]:0; };
       const crHead=auto&&(bar.bi%4===0)&&!isOd(bar.t);
+      const gk=!bar.hits&&DD[bar.drum]?bar.ts+'|'+bar.drum:null;    /* 下の帯のマスを光らせる印 */
       for(let i=0;i<steps;i++){ const t=bar.t+i*sd;
+        if(gk) ev.push({t,type:'dcur',gk,si:i});
         if(auto&&isOd(t)) continue;
         const an=auto&&isAd(t), cr=an||(i===0&&crHead);
         if(at('bd',i)||cr) ev.push({t,type:'drum',k:'bd'}); if(at('sn',i)) ev.push({t,type:'drum',k:'sn'});
+        if(at('rm',i)) ev.push({t,type:'drum',k:'rm'}); if(at('th',i)) ev.push({t,type:'drum',k:'th'}); if(at('tl',i)) ev.push({t,type:'drum',k:'tl'});
         if(cr||at('cr',i)) ev.push({t,type:'drum',k:'cr'});
         if(!cr){ if(at('hh',i)) ev.push({t,type:'drum',k:'hh'}); else if(at('hhs',i)) ev.push({t,type:'drum',k:'hhs'}); }
         if(at('rd',i)) ev.push({t,type:'drum',k:'rd'}); }
@@ -4122,15 +4517,16 @@ function fire(t,e){
   if(!ac) return;
   if(e.type==='mel'){ const m=e.m; playMel(t,m.midi,m.v,m.s,m.d,m.o); }
   else if(e.type==='drum') mdrm(t,e.k);
-  else if(e.type==='arp') arpAt(t,e.c,e.k,e.amp,e.d);
-  else strumAt(t,e.c,e.k,e.amp,e.d);
+  else if(e.type==='dcur') dgridCurAt(t,e.gk,e.si);
+  else if(e.type==='arp') arpAt(t,e.c,e.k,e.amp,e.d,e.v);
+  else strumAt(t,e.c,e.k,e.amp,e.d,e.v);
 }
 /* 今の範囲の組み立てを覚えておく（位置のバーは、鳴らしていない時も出す） */
 function curTimeline(){
   const s=song(); if(!s) return null;
   const LR=loopActive();
   const secs=s.sections;
-  const key=JSON.stringify([S.songId,S.secId,S.scope,!!LR,S.view==='sec',secs.map(x=>x.id)])+'|'+JSON.stringify(secs.map(x=>[x.tempo,x.ts,x.accomp,x.drum,x.bars.map(b=>[b.tempo,b.accomp,b.drum,b.drumHits,b.chords,b.notes])]))+'|'+JSON.stringify([s.drumAnt,s.drumPats]);
+  const key=JSON.stringify([S.songId,S.secId,S.scope,!!LR,S.view==='sec',secs.map(x=>x.id)])+'|'+JSON.stringify(secs.map(x=>[x.tempo,x.ts,x.accomp,x.drum,x.bars.map(b=>[b.tempo,b.accomp,b.drum,b.drumHits,b.chords,b.notes])]))+'|'+JSON.stringify([s.drumAnt,s.drumPats,s.drumShape,s.voicings]);
   if(TLC.key!==key){ TLC.key=key; TLC.tl=buildTimeline(secs); }
   return TLC.tl;
 }
@@ -4162,6 +4558,11 @@ function play(from){
 function playCore(from){
   const s=song(); if(!s||!audio()) return;
   /* ドラムの録音の下ごしらえが終わっていなければ、終わるのを待ってから鳴らす（長くても1.5秒） */
+  /* 共通のドラムの録音が届いていなければ、初回だけ待つ（長くても2.5秒。届かなければ今までの録音で鳴らす） */
+  if(smpOk()&&!play._smpTried&&!play._waiting){ smpBind();
+    if(!DS.sound.isReady('drums')){ play._smpTried=true; play._waiting=true;
+      let w=null; try{ w=DS.sound.load('drums').catch(()=>{}); }catch(e){}
+      Promise.race([w,new Promise(r=>setTimeout(r,2500))]).then(()=>{ play._waiting=false; if(!playing) play(from); }); return; } }
   if(!drumReady()&&!play._waiting){ const w=loadDrumRec(); if(w){ play._waiting=true;
     Promise.race([w,new Promise(r=>setTimeout(r,1500))]).then(()=>{ play._waiting=false; if(!playing) play(from); }); return; } }
   let tl=curTimeline();
@@ -4174,7 +4575,7 @@ function playCore(from){
   if(RG0&&from==null) from=RG0.t0;               /* 範囲があれば、その頭から鳴らす */
   const offset=Math.max(0,Math.min(tl.total-0.05,from==null?playPos:from));
   // 使う弦の音を先に作っておく（鳴らしている最中に作ると、音が遅れることがある）
-  new Set(tl.ev.filter(e=>e.c).map(e=>e.c)).forEach(c=>guitarVoicing(c).forEach(o=>{ const f=440*Math.pow(2,(o.m-69)/12); ksBuffer(ksLength(f),strTone(STEEL,o.s)); }));
+  new Set(tl.ev.filter(e=>e.c).map(e=>JSON.stringify([e.c,e.v||null]))).forEach(k=>{ const [c,v]=JSON.parse(k); (v?fretNotes(v):guitarVoicing(c)).forEach(o=>{ const f=440*Math.pow(2,(o.m-69)/12); ksBuffer(ksLength(f),strTone(STEEL,o.s)); }); });
   if(melVoiceOf()==='guitar') tl.ev.filter(e=>e.type==='mel').forEach(e=>{ const f=440*Math.pow(2,(e.m.midi-69)/12); ksBuffer(ksLength(f),strTone(STEEL,e.m.s)); });
   playing=true; renderPlayer();
   let start=ac.currentTime+0.15-offset, idx=0, lastBar=null;
@@ -4341,8 +4742,8 @@ function followBar(el,force){
     if(Math.abs(to-cur)<2) return; try{ sc.scrollTo({top:to,behavior:'smooth'}); }catch(_){ sc.scrollTop=to; } }
   else{ try{ window.scrollBy({top:dy,behavior:'smooth'}); }catch(_){ window.scrollBy(0,dy); } }
 }
-function clearPlayline(){ document.querySelectorAll('.phead').forEach(x=>x.remove()); }
-function movePlayline(cb,frac){
+function clearPlayline(){ document.querySelectorAll('.phead').forEach(x=>x.remove()); prHead(null); }
+function movePlayline(cb,frac){ prHead(cb.id,frac);
   const bar=document.querySelector(`.bar[data-bar="${cb.id}"]`), mel=bar&&bar.querySelector('.mel');
   if(!mel){ clearPlayline(); return; }
   let el=mel.querySelector(':scope > .phead');
@@ -6138,7 +6539,7 @@ function helpSheet(){
     <p><b>再生の位置</b>：再生の帯の上のバーで、今どこを鳴らしているかが分かります。つまんで動かすとその位置から鳴らします。細い線は小節、太い線はキーやテンポなどの変わり目です。⏮ で先頭へ戻り、〈追う〉を入れると、鳴らしている小節へ画面が送られます。</p>
     <p><b>ループ</b>：再生の帯の〈⟳ ループ〉で繰り返しを入れます。鳴らしながらでも、ふだんどおり入力やコードの差し替えができ、直した音はすぐ聞こえます。範囲は、帯の〈範囲を引く〉を押してから小節を押すかなぞります。範囲なしなら曲全体を繰り返します。範囲は〈1〜4〉の席に控えられ、〈⟳ ループ〉の長押しでも選べます。鳴らしながら引き直すと、その範囲の頭から鳴り直します。</p>
     <p><b>メロディの音</b>：下の再生の帯で、ギター・笛・ピアノから選べます。ギターは実際のギターの高さ（五線に書いた音の1オクターブ下）で鳴ります。笛とピアノは歌のメロディ用なので、五線に書いた高さで鳴り、ト音記号の下の「8」が外れます。〈音色の調整〉で、明るさや息の音、余韻の長さなどを曲ごとに変えられます。</p>
-    <p><b>ミキサー</b>：下の帯の〈ミキサー〉で開きます。伴奏・ドラム・メロディ・全体の音量（フェーダー）、響きの量（つまみ）、〈消音〉を曲ごとに変えられます。伴奏の欄で伴奏の楽器（ギター・ピアノ）を、メロディの欄で音色（ギター・笛・ピアノ）と〈音色の調整〉を選べます。ピアノの伴奏は、左手でベース、右手でコードの音をまとめて弾き、次の一打まで伸ばします。鳴らしている間は、音の大きさが目盛りに光ります。下の帯の〈ドラム〉を押すと、ドラムの型を選ぶ・作る画面が開きます。</p>
+    <p><b>ミキサー</b>：下の帯の〈ミキサー〉で開きます。伴奏・ドラム・メロディ・全体の音量（フェーダー）、響きの量（つまみ）、〈消音〉を曲ごとに変えられます。伴奏の欄で伴奏の楽器（ギター・ピアノ）を、メロディの欄で音色（ギター・笛・ピアノ）と〈音色の調整〉を選べます。ピアノの伴奏は、左手でベース、右手でコードの音をまとめて弾き、次の一打まで伸ばします。鳴らしている間は、音の大きさが目盛りに光ります。下の帯の〈ドラム〉を押すと、ドラムの型を選ぶ画面が開きます。</p>
     <p><b>長さ</b>：右へ引くと長く、頭より左へ引くと頭が前へ伸びます。小節線を越えると、次の小節へタイでつなぎます。</p>
     <p><b>音符と休符</b>：帯の〈音符〉〈休符〉、または右クリック・二本指タップで持ち替えます。休符のときは、押した所・なぞった範囲が休符になります。</p>
     <p><b>選択</b>：〈選択〉で音符を押すか横になぞって選び、帯の道具を使います。〈⌣ つなぐ〉は、同じ数字ならタイ、違えばハンマリング・プリングでつなぎます。</p>
@@ -6156,8 +6557,10 @@ function helpSheet(){
     <p><b>置いたコード</b>：押すと名前の変更や削除ができます。長押しで食い（八分音符ひとつ前から鳴らす）を付け外しします。食いのコードは元の拍に書かれ、すぐ前の八分からコード名へ向かって弧が入ります（小節の頭の食いは、前の小節の最後の八分から）。伴奏は食った位置で鳴って元の拍では弾き直しません。ドラムの画面の〈食いに合わせる〉がオンなら、ドラムも食った位置でバスドラムとシンバルを叩き、元の拍の頭は休みます。すぐ前の八分にコードがある時は食いにできません。小節の頭の食いは、前の小節の最後に書かれます。</p>
     <p><b>コードを動かす</b>：コードを押したまま動かすと、つまんで移せます。空いたマスに落とすとそこへ移り、別のコードの真ん中に落とすと置き換わります（置き換わる側が赤く示されます）。別のコードのマスの左端に当てるとそのコードを右へ、右端に当てると左へ1マス押し、続いて並んでいるコードも一緒にずれます。押せるのは小節の中だけです。</p>
     <p><b>キー・拍子・テンポ</b>：譜面の上の「Key ・ 拍子 ・ ♩=」を押して選びます。伴奏・ドラムも同じ所で選べます。これらは曲全体に効きます。途中から変えたいときは、小節の設定の〈この小節から変える〉を使います。譜面のト音記号（TABならTABの記号）を押しても、五度圏からキーを選べます。先頭の小節なら曲全体、それ以外はその小節から次に変わる所までに効きます。転調した小節は段を改め、手前は複縦線になります。記号だけを段の途中に出したいときは、小節の設定の〈この小節に記号を出す〉を使います。キーの小窓には、メロディとコードから割り出した合いそうなキーも出ます。キーを変えるときは、音符とコードも一緒に移すか選べます。</p>
-    <p><b>伴奏とドラム</b>：譜面の上の〈伴奏〉〈ドラム〉を押して選びます。拍子に合うものだけが並びます。コードが変わる所では、型の途中でも新しいコードで鳴ります。伴奏は拍の頭をいちばん強く、裏をほんの少し弱く弾きます。裏で弾いてすぐ後の強い位置を休む所（シンコペーション）は、拍の頭と同じ強さで弾きます。ドラムは、曲の頭・区切りの頭・区切りの中の4小節ごとの頭でシンバルを鳴らします。ドラムの音は、Versilian Studios「Virtuosity Drums」（CC0：自由に使ってよい録音）を使っています。</p>
-    <p><b>ドラムを打ち込む</b>：下の帯の〈ドラム〉（または譜面の上の「ドラム」）で開く画面に、選んでいる型の表が出ます。表の行はクラッシュ・ライド・ハイハット（開き・閉じ）・スネア・バスドラム、マスは8分・16分・3連から選べます。マスを押して直せます。元からある型を直すと「〇〇（自作）」として別の型になり、元の型は変わりません。自作の型は名前を変えたり消したりできます。その小節だけ叩き方を変えたい時は、小節の番号を押して〈この小節のドラムを打ち込む〉を選びます。シンバルを「自動も入れる」にすると、区切りの頭・4小節ごとのシンバルと食いの合わせも足されます。「打ち込んだとおり」なら表のとおりにだけ鳴ります。</p>
+    <p><b>伴奏とドラム</b>：譜面の上の〈伴奏〉〈ドラム〉を押して選びます。拍子に合うものだけが並びます。コードが変わる所では、型の途中でも新しいコードで鳴ります。伴奏は拍の頭をいちばん強く、裏をほんの少し弱く弾きます。裏で弾いてすぐ後の強い位置を休む所（シンコペーション）は、拍の頭と同じ強さで弾きます。ドラムは、曲の頭・区切りの頭・区切りの中の4小節ごとの頭でシンバルを鳴らします。ドラムの音は ScoreLineTAB と同じ録音（MusyngKite、CC BY-SA 3.0）を使い、読み込めない時は Versilian Studios「Virtuosity Drums」（CC0）の録音で鳴らします。</p>
+    <p><b>ピアノロール</b>：譜面の上の〈ピアノロール〉で小窓が開きます。縦が音の高さ（五線譜に書いた高さ）、横が時間です。〈伴奏の音〉で、コードの音を薄い帯で重ねます。〈−〉〈＋〉で横を縮める・広げる、見出しを持って動かす、右下の角で大きさを変えることができます。</p>
+    <p><b>コード図</b>：譜面の上の〈コード図〉で、出さない・コードの下・曲名の下（使うコードの一覧）を選べます。図を押すと押さえを変えられ、伴奏のギターもその押さえで鳴ります。既定は〈この箇所だけ〉で、〈この曲のこのコード全部〉にも切り替えられます。伴奏がピアノの時は図だけが変わります。</p>
+    <p><b>ドラムを打ち込む</b>：型は 4分・8ビート・16ビート・トリプレット・8シャッフル・16シャッフルの6つで、拍子に合わせて伸び縮みします。下の帯の上に、いま触っている所の型のマスが出ます。マスを押して形を直せます（曲ごと・拍子ごとに覚え、〈元に戻す〉で最初の形に戻ります）。行はクラッシュ・ライド・ハイハット・スネア・バスドラムで、〈＋ ほかの音〉でオープンハイハット・リム・ハイタム・ロータムも出せます。〈タイト〉はドラム全体の響きを短く止めます。マスは〈畳む〉でしまえ、〈ドラム〉の画面の〈マスを出す〉で出し直せます。その小節だけ叩き方を変えたい時は、小節の番号を押して〈この小節のドラムを打ち込む〉を選びます。シンバルを「自動も入れる」にすると、区切りの頭・4小節ごとのシンバルと食いの合わせも足されます。「打ち込んだとおり」なら表のとおりにだけ鳴ります。</p>
     <p><b>小節</b>：左上の番号を押すと、その小節だけのテンポ・伴奏・ドラムの変更や、小節の追加・削除ができます。</p>
     <p><b>保存</b>：変更はこの端末に自動で保存されます。機種変更や受け渡しには〈書き出す〉〈読み込む〉を使ってください。</p>
     <div class="btns"><button class="tb pri" id="hOk">閉じる</button></div>`,sh=>sh.querySelector('#hOk').onclick=closeSheet);
