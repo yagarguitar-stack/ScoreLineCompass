@@ -409,6 +409,7 @@ body.radialing,body.radialing *{-webkit-user-select:none!important;user-select:n
 .dgb-ttl{font-weight:700;font-size:13px}
 .dgb-ttl small{margin-left:6px;color:var(--on-ink-dim);font-weight:400}
 .dgb-sp{flex:1}
+.dgb-none{font-size:12px;color:var(--on-ink-dim)}
 .dgridbar .dgw{margin:4px 0 2px}
 .dgridbar .dgc{height:20px}
 .dgc.cur{box-shadow:inset 0 0 0 2px var(--chord-on-ink)}
@@ -449,7 +450,7 @@ body.radialing,body.radialing *{-webkit-user-select:none!important;user-select:n
 .pr-n{position:absolute;border-radius:5px;background:linear-gradient(180deg,#6f68f2 0%,#4f46e5 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 0 0 1px #3730a3,0 2px 4px rgba(0,0,0,.2);box-sizing:border-box;display:flex;align-items:center;overflow:hidden}
 .pr-n.tie{opacity:.75}
 .pr-n.sel{outline:2px solid #dc2626;outline-offset:1px;z-index:1}
-.pr-roll{cursor:crosshair;touch-action:none}
+.pr-roll{cursor:crosshair;touch-action:pan-x pan-y}
 .pr-n{cursor:grab}
 .pr-seg{display:inline-flex}
 .pr-seg .pr-b{border-radius:0}
@@ -2685,9 +2686,9 @@ function remapRows(rows,from,to,n){ const out={}; DROWS.forEach(([k])=>{ const a
   if(r) for(let i=0;i<n*from;i++){ if(r[i%r.length]){ const j=Math.round(i*to/from); if(j<a.length) a[j]=1; } } out[k]=a; }); return out; }
 let DED=null;
 function openDrumEditor(o){
-  const grids=drumGrids(o.compound);
-  if(!grids.some(g=>g[0]===o.div)){ const to=grids.reduce((a,g)=>Math.abs(g[0]-o.div)<Math.abs(a-o.div)?g[0]:a,grids[0][0]); o.rows=remapRows(o.rows,o.div,to,o.beats); o.div=to; }
-  else o.rows=remapRows(o.rows,o.div,o.div,o.beats);
+  const grids=drumGrids(o.compound).slice();
+  if(!grids.some(g=>g[0]===o.div)) grids.push([o.div,'型と同じ']);   /* 型の細かさがどの選択肢とも違う時は、その細かさのまま開く（形を崩さない） */
+  o.rows=remapRows(o.rows,o.div,o.div,o.beats);
   if(o.more==null) o.more=!!uiPref().dgMore;
   const draw=()=>dgGridHtml(o.rows,o.beats*o.div,o.div,o.more)+dgMoreBtn(o.rows,o.more,'dMore');
   sheet(`<h2>${esc(o.title)}</h2>
@@ -2798,7 +2799,9 @@ function dgCur(s){
   const L=dgCombos(s); if(!L.length) return null;
   if(DGRID.selSec!==S.secId) DGRID.sel=null;
   const sec=section(), here=sec&&L.find(x=>x.g===sec.ts+'|'+sec.drum);
-  return L.find(x=>x.g===DGRID.sel)||here||L[0];
+  const chosen=L.find(x=>x.g===DGRID.sel); if(chosen) return chosen;
+  if(here) return here;
+  return sec&&sec.drum==='none'?{none:true}:L[0];
 }
 /* 型の今の形（直せる元）。自作の型は型そのものを直す */
 function dgShape(s,c){
@@ -2823,7 +2826,14 @@ function dgToggle(s,c,r,i){
 }
 function renderDgrid(){
   const el=$('dgridBar'); if(!el) return;
-  const s=song(), c=s&&S.view==='sec'&&!uiPref().dgHide?dgCur(s):null, sh=c&&dgShape(s,c);
+  const s=song(), c=s&&S.view==='sec'&&!uiPref().dgHide?dgCur(s):null;
+  if(c&&c.none){                                      /* いまの区間はドラムを鳴らさない：一行だけ。札で他の区間の型は開ける */
+    const L=dgCombos(s); el.classList.remove('hide'); el.dataset.g='';
+    el.innerHTML=`<div class="dgb-hd"><span class="lb">ドラム</span><span class="dgb-none">この区間はドラムを鳴らしません</span>${L.map(x=>`<button class="tb" data-dgg="${esc(x.g)}">${esc(x.ts)} ${esc(drumLabel(x.k,s))}</button>`).join('')}<span class="dgb-sp"></span><button class="tb" id="dgFold" title="ドラムのマスを畳みます（〈ドラム〉の画面で出し直せます）">畳む</button></div>`;
+    el.querySelectorAll('[data-dgg]').forEach(b=>b.onclick=()=>{ DGRID.sel=b.dataset.dgg; DGRID.selSec=S.secId; renderDgrid(); fitMain(); });
+    el.querySelector('#dgFold').onclick=()=>{ uiSet('dgHide',true); renderDgrid(); fitMain(); };
+    return; }
+  const sh=c&&dgShape(s,c);
   if(!sh){ el.classList.add('hide'); el.innerHTML=''; return; }
   el.classList.remove('hide'); el.dataset.g=c.g;
   const more=!!uiPref().dgMore, L=dgCombos(s);
@@ -2847,7 +2857,7 @@ function renderDgrid(){
 let _dgCurT=null;
 function dgridCurAt(at,g,si){
   if(!ac) return;
-  setTimeout(()=>{ const el=$('dgridBar'); if(!el) return;
+  setTimeout(()=>{ if(!playing) return; const el=$('dgridBar'); if(!el) return;
     el.querySelectorAll('.dgc.cur').forEach(x=>x.classList.remove('cur'));
     if(el.dataset.g!==g) return;
     el.querySelectorAll(`.dgc[data-di="${si}"]`).forEach(x=>x.classList.add('cur'));
@@ -3097,6 +3107,7 @@ function renderBars(){
     el.oninput=put; el.onchange=()=>{ if(put()) touch(song()); }; });
   box.querySelectorAll('.mel').forEach(bindMel);
   renderPR();
+  { const db=$('dgridBar'), was=db&&db.dataset.g+'|'+db.className; renderDgrid(); if(db&&db.dataset.g+'|'+db.className!==was) fitMain(); }   /* 触っている区間が変わったらドラムのマスも追う */
   box.querySelectorAll('[data-dgb]').forEach(el=>el.onclick=e=>{ e.stopPropagation(); openVoicingEditor(s,[{barId:el.dataset.dgb,t:+el.dataset.dgt}],'here'); });
   renderDgmTop();
   bindOtt(box);
@@ -4010,64 +4021,118 @@ function prDelete(){
   if((n.stops||[]).length>1) n.stops=n.stops.filter(o=>o.s!==PRSEL.s); else bar.notes=bar.notes.filter(x=>x!==n);
   tidyBar(sec,bar); PRSEL=null; touch(s); renderBars(); renderMelDock();
 }
+/* タイで繋がった同じ弦の音（前後）を集める。高さを変える時はまとめて動かす */
+function prTieChain(s,bar,n,stop){
+  const F=[]; flatBars(s).forEach(({sec,b})=>(b.notes||[]).slice().sort((x,y)=>x.start-y.start).forEach(z=>F.push({sec,b,n:z})));
+  const at=F.findIndex(x=>x.n===n); if(at<0) return [{n,o:stop}];
+  const out=[{n,o:stop}];
+  let cur=stop;
+  for(let i=at-1;i>=0&&cur&&cur.t&&cur.t.link==='tie';i--){ if(F[i].n.kind==='rest') break;
+    const o=(F[i].n.stops||[]).find(y=>y.s===cur.s&&typeof y.f==='number'); if(!o) break; out.unshift({n:F[i].n,o}); cur=o; }
+  for(let i=at+1;i<F.length;i++){ if(F[i].n.kind==='rest') break;
+    const o=(F[i].n.stops||[]).find(y=>y.s===stop.s&&y.t&&y.t.link==='tie'); if(!o) break; out.push({n:F[i].n,o}); }
+  return out;
+}
+/* 押した所から：音符を選ぶか、新しく置く。置いた・選んだ音を返す（休符を置いた時は null） */
+function prBegin(M,P,y,hitEl){
+  const s=song(), snap=snapTicks(), midiAt=yy=>Math.max(M.lo,Math.min(M.hi,M.hi-Math.floor(yy/PR.rh)));
+  let n=null, stop=null, made=false;
+  if(hitEl){ n=P.bar.notes.find(z=>z.id===hitEl.dataset.nid); stop=n&&(n.stops||[]).find(o=>o.s===+hitEl.dataset.ns); }
+  if(!n){
+    const at=Math.max(0,Math.min(P.total-1,Math.floor(P.tick/snap+1e-6)*snap)), len=Math.min(snap,P.total-at);
+    if(MI.pen==='rest'){
+      P.bar.notes=P.bar.notes.filter(z=>!(z.start<at+len&&z.start+z.len>at&&z.start>=at));
+      P.bar.notes.forEach(z=>{ if(z.start<at&&z.start+z.len>at) z.len=at-z.start; });
+      P.bar.notes.push({id:nid(),start:at,len,kind:'rest',stops:[],sym:{},lyric:null});
+      tidyBar(P.sec,P.bar); PRSEL=null; touch(s); renderBars(); renderMelDock(); return null; }
+    const mw=midiAt(y), same=P.bar.notes.find(z=>z.start===at&&z.kind!=='rest');
+    if(same){                                           /* 同じ所に音がある：空いた弦で重ねて和音に */
+      if((same.stops||[]).some(o=>typeof o.f==='number'&&OPEN[o.s]+o.f+12===mw)) return null;
+      const st=prStop(P.bar,at,mw,(same.stops||[]).map(o=>o.s)); if(!st){ toast('ギターで出せない高さです'); return null; }
+      same.stops.push(Object.assign({t:{}},st)); same.stops.sort((a,b)=>a.s-b.s); n=same; stop=same.stops.find(o=>o.s===st.s);
+    } else {
+      const st=prStop(P.bar,at,mw); if(!st){ toast('ギターで出せない高さです'); return null; }
+      P.bar.notes=P.bar.notes.filter(z=>!(z.start>=at&&z.start<at+len));
+      P.bar.notes.forEach(z=>{ if(z.start<at&&z.start+z.len>at) z.len=at-z.start; });
+      n={id:nid(),start:at,len,kind:'note',stops:[Object.assign({t:{}},st)],sym:{},lyric:null};
+      P.bar.notes.push(n); P.bar.notes.sort((a,b)=>a.start-b.start); tidyBar(P.sec,P.bar); stop=n.stops[0]; }
+    made=true;
+  }
+  if(!n||!stop) return null;
+  PRSEL={barId:P.bar.id,id:n.id,s:stop.s}; MI.cur={barId:P.bar.id,tick:n.start,s:stop.s};
+  preview(stop); renderPR();
+  return {n,stop,made};
+}
+/* 引いて直す：横は長さ、上下は高さ（タイで繋がった音はまとめて） */
+function prEditor(M,P,G,x0,y0){
+  const s=song(), snap=snapTicks(), n=G.n, start=n.start;
+  let stop=G.stop, axis=G.made?'h':null, changed=G.made;
+  const m0=OPEN[stop.s]+stop.f+12; let lastM=m0;
+  return {
+    move(cx,cy){
+      const dx=cx-x0, dy=cy-y0;
+      if(!axis){ if(Math.abs(dx)<6&&Math.abs(dy)<6) return; axis=Math.abs(dx)>=Math.abs(dy)?'h':'v'; }
+      const idx=P.bar.notes.indexOf(n); if(idx<0) return;
+      if(axis==='h'){
+        const rr=$('proll').querySelector('.pr-roll').getBoundingClientRect(), xe=cx-rr.left;
+        const endT=(xe-P.B.x)/M.pxq*TPQ, L=Math.min(Math.max(snap,Math.round((endT-start)/snap)*snap),P.total-start);
+        if(L!==n.len){ setNoteLen(P.sec,P.bar,idx,L); changed=true; renderPR(); } }
+      else {
+        const mw=Math.max(M.lo,Math.min(M.hi,m0-Math.round(dy/PR.rh))); if(mw===lastM) return;
+        const chain=prTieChain(s,P.bar,n,stop);
+        const busy=new Set(); chain.forEach(c=>(c.n.stops||[]).forEach(o=>{ if(o!==c.o) busy.add(o.s); }));
+        if(chain.some(c=>(c.n.stops||[]).some(o=>o!==c.o&&typeof o.f==='number'&&OPEN[o.s]+o.f+12===mw))) return;
+        const st=prStop(P.bar,start,mw,[...busy]); if(!st) return;
+        chain.forEach(c=>{ c.o.s=st.s; c.o.f=st.f; c.n.stops.sort((a,b)=>a.s-b.s); });
+        lastM=mw; changed=true; PRSEL={barId:P.bar.id,id:n.id,s:st.s}; preview(stop); renderPR(); }
+    },
+    end(){ if(changed){ touch(s); renderBars(); renderMelDock(); } else renderPR(); }
+  };
+}
+/* マウス：押した所に置き、そのまま引いて長さ。音符を引けば長さ・高さ。
+   指・ペン：一本指で引けばスクロール。押して離すと置く（音符なら選んで鳴らす）。
+             長押ししてから引くと、音符の長さ・高さを直す（何も無い所なら置いてから長さ） */
 function prBindInput(roll,M){
   if(!roll) return;
+  let editing=false;
+  roll.addEventListener('touchmove',e=>{ if(editing) e.preventDefault(); },{passive:false});
   roll.addEventListener('pointerdown',e=>{
     if(e.button>0) return;
     const r=roll.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
     const P=prPlace(M,x); if(!P) return;
-    const s=song(), snap=snapTicks(), midiAt=yy=>Math.max(M.lo,Math.min(M.hi,M.hi-Math.floor(yy/PR.rh)));
-    e.preventDefault();
     const hitEl=e.target.closest('.pr-n');
-    let n=null, stop=null, made=false;
-    if(hitEl){ n=P.bar.notes.find(z=>z.id===hitEl.dataset.nid); stop=n&&(n.stops||[]).find(o=>o.s===+hitEl.dataset.ns); }
-    if(!n){
-      const at=Math.max(0,Math.min(P.total-1,Math.floor(P.tick/snap+1e-6)*snap)), len=Math.min(snap,P.total-at);
-      if(MI.pen==='rest'){
-        P.bar.notes=P.bar.notes.filter(z=>!(z.start<at+len&&z.start+z.len>at&&z.start>=at));
-        P.bar.notes.forEach(z=>{ if(z.start<at&&z.start+z.len>at) z.len=at-z.start; });
-        P.bar.notes.push({id:nid(),start:at,len,kind:'rest',stops:[],sym:{},lyric:null});
-        tidyBar(P.sec,P.bar); PRSEL=null; touch(s); renderBars(); renderMelDock(); return; }
-      const mw=midiAt(y), same=P.bar.notes.find(z=>z.start===at&&z.kind!=='rest');
-      if(same){                                           /* 同じ所に音がある：空いた弦で重ねて和音に */
-        if((same.stops||[]).some(o=>typeof o.f==='number'&&OPEN[o.s]+o.f+12===mw)) return;
-        const st=prStop(P.bar,at,mw,(same.stops||[]).map(o=>o.s)); if(!st) return toast('ギターで出せない高さです');
-        same.stops.push(Object.assign({t:{}},st)); same.stops.sort((a,b)=>a.s-b.s); n=same; stop=same.stops.find(o=>o.s===st.s);
-      } else {
-        const st=prStop(P.bar,at,mw); if(!st) return toast('ギターで出せない高さです');
-        P.bar.notes=P.bar.notes.filter(z=>!(z.start>=at&&z.start<at+len));
-        P.bar.notes.forEach(z=>{ if(z.start<at&&z.start+z.len>at) z.len=at-z.start; });
-        n={id:nid(),start:at,len,kind:'note',stops:[Object.assign({t:{}},st)],sym:{},lyric:null};
-        P.bar.notes.push(n); P.bar.notes.sort((a,b)=>a.start-b.start); tidyBar(P.sec,P.bar); stop=n.stops[0]; }
-      made=true;
-    }
-    if(!n||!stop) return;
-    PRSEL={barId:P.bar.id,id:n.id,s:stop.s}; MI.cur={barId:P.bar.id,tick:n.start,s:stop.s};
-    preview(stop); renderPR();
-    const x0=e.clientX, y0=e.clientY, m0=OPEN[stop.s]+stop.f+12, len0=n.len, start=n.start;
-    let axis=made?'h':null, changed=made, lastM=m0;
-    const mv=ev=>{
-      const dx=ev.clientX-x0, dy=ev.clientY-y0;
-      if(!axis){ if(Math.abs(dx)<6&&Math.abs(dy)<6) return; axis=Math.abs(dx)>=Math.abs(dy)?'h':'v'; }
-      const sec=P.sec, bar=P.bar, idx=bar.notes.indexOf(n); if(idx<0) return;
-      if(axis==='h'){                                     /* 長さ：指の位置までを刻みで丸める */
-        const rr=$('proll').querySelector('.pr-roll').getBoundingClientRect(), xe=ev.clientX-rr.left;
-        const endT=(xe-P.B.x)/M.pxq*TPQ, len=Math.max(snap,Math.round((endT-start)/snap)*snap);
-        const L=Math.min(len,P.total-start);
-        if(L!==n.len){ setNoteLen(sec,bar,idx,L); changed=true; renderPR(); } }
-      else {                                              /* 高さ：半音ずつ */
-        const mw=Math.max(M.lo,Math.min(M.hi,m0-Math.round(dy/PR.rh)));
-        if(mw!==lastM){ const others=(n.stops||[]).filter(o=>o!==stop).map(o=>o.s);
-          const st=prStop(bar,start,mw,others); if(!st) return;
-          if((n.stops||[]).some(o=>o!==stop&&typeof o.f==='number'&&OPEN[o.s]+o.f+12===mw)) return;
-          stop.s=st.s; stop.f=st.f; n.stops.sort((a,b)=>a.s-b.s); lastM=mw; changed=true;
-          PRSEL={barId:bar.id,id:n.id,s:stop.s}; preview(stop); renderPR(); } }
-    };
-    const up=()=>{ window.removeEventListener('pointermove',mv); window.removeEventListener('pointerup',up); window.removeEventListener('pointercancel',up);
-      if(changed){ touch(s); renderBars(); renderMelDock(); } else renderPR(); };
-    window.addEventListener('pointermove',mv); window.addEventListener('pointerup',up); window.addEventListener('pointercancel',up);
+    if(e.pointerType==='mouse'){
+      e.preventDefault();
+      const G=prBegin(M,P,y,hitEl); if(!G) return;
+      const ed=prEditor(M,P,G,e.clientX,e.clientY);
+      const mv=ev=>ed.move(ev.clientX,ev.clientY);
+      const up=()=>{ window.removeEventListener('pointermove',mv); window.removeEventListener('pointerup',up); window.removeEventListener('pointercancel',up); ed.end(); };
+      window.addEventListener('pointermove',mv); window.addEventListener('pointerup',up); window.addEventListener('pointercancel',up);
+      return; }
+    /* 指・ペン */
+    const x0=e.clientX, y0=e.clientY, id=e.pointerId; let moved=false, ed=null;
+    const timer=setTimeout(()=>{ if(moved) return; const G=prBegin(M,P,y,hitEl); if(!G){ done(); return; }
+      ed=prEditor(M,P,G,x0,y0); editing=true; try{ navigator.vibrate&&navigator.vibrate(12); }catch(_){} },420);
+    const mv=ev=>{ if(ev.pointerId!==id) return;
+      if(ed){ ed.move(ev.clientX,ev.clientY); return; }
+      if(Math.abs(ev.clientX-x0)>8||Math.abs(ev.clientY-y0)>8){ moved=true; clearTimeout(timer); } };
+    const done=()=>{ clearTimeout(timer); editing=false; window.removeEventListener('pointermove',mv); window.removeEventListener('pointerup',up); window.removeEventListener('pointercancel',cancel); };
+    const up=ev=>{ if(ev.pointerId!==id) return; const wasEd=ed; done();
+      if(wasEd){ wasEd.end(); return; }
+      if(!moved){ const G=prBegin(M,P,y,hitEl); if(G&&G.made){ touch(song()); renderBars(); renderMelDock(); } } };
+    const cancel=ev=>{ if(ev.pointerId!==id) return; const wasEd=ed; done(); if(wasEd) wasEd.end(); };
+    window.addEventListener('pointermove',mv); window.addEventListener('pointerup',up); window.addEventListener('pointercancel',cancel);
   });
 }
+/* 画面を回す・窓を狭めた時、小窓を画面の中へ寄せて縮める */
+function prClamp(){
+  const el=$('proll'); if(!el) return; const vw=window.innerWidth, vh=window.innerHeight;
+  const w=Math.min(el.offsetWidth,vw-16), h=Math.min(el.offsetHeight,vh-16);
+  if(w!==el.offsetWidth) el.style.width=Math.max(280,w)+'px'; if(h!==el.offsetHeight) el.style.height=Math.max(180,h)+'px';
+  el.style.left=Math.max(8,Math.min(parseFloat(el.style.left)||0,vw-el.offsetWidth-8))+'px';
+  el.style.top=Math.max(8,Math.min(parseFloat(el.style.top)||0,vh-el.offsetHeight-8))+'px';
+}
+window.addEventListener('resize',()=>{ clearTimeout(prClamp._t); prClamp._t=setTimeout(prClamp,120); });
 /* 再生の位置。鳴らしている間、追う設定なら位置が見えるように送る */
 function prHead(barId,frac){
   const el=$('proll'), ph=el&&el.querySelector('#prPh'); if(!ph||!PRM) return;
@@ -4481,7 +4546,7 @@ const ACC={
 };
 /* ══ ドラムの型——ScoreLineTAB と同じ仕様（ことりノームと同じ6つ）══
    型は 4/4 の形で持ち、拍子の分子（x/8 は8分を1拍と数える）の数だけ拍を並べる。
-   4拍より長ければ足りない拍は空、短ければ切り詰める。
+   4拍より長ければ足りない拍は型の頭から繰り返して埋め（Compass だけ。TAB・ことりノームは空）、短ければ切り詰める。
    ただし 3/4 の8ビートは旧ワルツ、6/8 の8ビートは旧「6/8のリズム」を最初の形にする（今までの曲の鳴り方を変えないため）。
    直した形は曲の drumShape['拍子'][型] に覚える（〈元に戻す〉で最初の形へ）。
    自作の型（'u:'＋番号）は今までの曲のために残す */
@@ -4510,7 +4575,8 @@ function drumSteps(k,ts){ return Math.max(1,Math.round(DD[k].steps*drumN(ts)/4))
 /* その拍子での最初の形 */
 function drumDefault(k,ts){
   const n=drumSteps(k,ts), src=(DD_METER[ts]&&DD_METER[ts][k])||DD[k], p={steps:n,div:DD[k].div,rows:{}};
-  DROWS.forEach(([r])=>{ p.rows[r]=[]; for(let i=0;i<n;i++) p.rows[r].push((src[r]&&src[r][i])?1:0); });
+  const L=src.hhs?src.hhs.length:DD[k].steps;
+  DROWS.forEach(([r])=>{ p.rows[r]=[]; for(let i=0;i<n;i++) p.rows[r].push((src[r]&&src[r][i%L])?1:0); });
   return p;
 }
 function drumCustomOf(s,k,ts){ const m=s&&s.drumShape&&s.drumShape[ts], c=m&&m[k];
@@ -4839,7 +4905,8 @@ function followBar(el,force){
     if(Math.abs(to-cur)<2) return; try{ sc.scrollTo({top:to,behavior:'smooth'}); }catch(_){ sc.scrollTop=to; } }
   else{ try{ window.scrollBy({top:dy,behavior:'smooth'}); }catch(_){ window.scrollBy(0,dy); } }
 }
-function clearPlayline(){ document.querySelectorAll('.phead').forEach(x=>x.remove()); prHead(null); }
+function clearPlayline(){ document.querySelectorAll('.phead').forEach(x=>x.remove()); prHead(null);
+  clearTimeout(_dgCurT); document.querySelectorAll('#dgridBar .dgc.cur').forEach(x=>x.classList.remove('cur')); }
 function movePlayline(cb,frac){ prHead(cb.id,frac);
   const bar=document.querySelector(`.bar[data-bar="${cb.id}"]`), mel=bar&&bar.querySelector('.mel');
   if(!mel){ clearPlayline(); return; }
@@ -6655,7 +6722,7 @@ function helpSheet(){
     <p><b>コードを動かす</b>：コードを押したまま動かすと、つまんで移せます。空いたマスに落とすとそこへ移り、別のコードの真ん中に落とすと置き換わります（置き換わる側が赤く示されます）。別のコードのマスの左端に当てるとそのコードを右へ、右端に当てると左へ1マス押し、続いて並んでいるコードも一緒にずれます。押せるのは小節の中だけです。</p>
     <p><b>キー・拍子・テンポ</b>：譜面の上の「Key ・ 拍子 ・ ♩=」を押して選びます。伴奏・ドラムも同じ所で選べます。これらは曲全体に効きます。途中から変えたいときは、小節の設定の〈この小節から変える〉を使います。譜面のト音記号（TABならTABの記号）を押しても、五度圏からキーを選べます。先頭の小節なら曲全体、それ以外はその小節から次に変わる所までに効きます。転調した小節は段を改め、手前は複縦線になります。記号だけを段の途中に出したいときは、小節の設定の〈この小節に記号を出す〉を使います。キーの小窓には、メロディとコードから割り出した合いそうなキーも出ます。キーを変えるときは、音符とコードも一緒に移すか選べます。</p>
     <p><b>伴奏とドラム</b>：譜面の上の〈伴奏〉〈ドラム〉を押して選びます。拍子に合うものだけが並びます。コードが変わる所では、型の途中でも新しいコードで鳴ります。伴奏は拍の頭をいちばん強く、裏をほんの少し弱く弾きます。裏で弾いてすぐ後の強い位置を休む所（シンコペーション）は、拍の頭と同じ強さで弾きます。ドラムは、曲の頭・区切りの頭・区切りの中の4小節ごとの頭でシンバルを鳴らします。ドラムの音は ScoreLineTAB と同じ録音（MusyngKite、CC BY-SA 3.0）を使い、読み込めない時は Versilian Studios「Virtuosity Drums」（CC0）の録音で鳴らします。</p>
-    <p><b>ピアノロール</b>：譜面の上の〈ピアノロール〉で小窓が開きます。縦が音の高さ（五線譜に書いた高さ）、横が時間です。〈伴奏の音〉で、コードの音を薄い帯で重ねます。〈−〉〈＋〉で横を縮める・広げる、見出しを持って動かす、右下の角で大きさを変えることができます。何も無い所を押すと音符（〈休符〉の時は休符）が置け、押したまま横に引くと長さが決まります。音符を横に引くと長さ、上下に動かすと高さが変わります。置く長さは下の帯の刻みと同じです。〈消す〉で選んだ音符を消せます。</p>
+    <p><b>ピアノロール</b>：譜面の上の〈ピアノロール〉で小窓が開きます。縦が音の高さ（五線譜に書いた高さ）、横が時間です。〈伴奏の音〉で、コードの音を薄い帯で重ねます。〈−〉〈＋〉で横を縮める・広げる、見出しを持って動かす、右下の角で大きさを変えることができます。何も無い所を押すと音符（〈休符〉の時は休符）が置け、押したまま横に引くと長さが決まります。音符を横に引くと長さ、上下に動かすと高さが変わります。置く長さは下の帯の刻みと同じです。〈消す〉で選んだ音符を消せます。スマホ・iPad では、一本指で引くとスクロール、押して離すと置き、長押ししてから引くと長さ・高さが変わります。</p>
     <p><b>コード図</b>：譜面の上の〈コード図〉で、出さない・コードの下・曲名の下（使うコードの一覧）を選べます。図を押すと押さえを変えられ、伴奏のギターもその押さえで鳴ります。既定は〈この箇所だけ〉で、〈この曲のこのコード全部〉にも切り替えられます。伴奏がピアノの時は図だけが変わります。</p>
     <p><b>ドラムを打ち込む</b>：型は 4分・8ビート・16ビート・トリプレット・8シャッフル・16シャッフルの6つで、拍子に合わせて伸び縮みします。下の帯の上に、いま触っている所の型のマスが出ます。マスを押して形を直せます（曲ごと・拍子ごとに覚え、〈元に戻す〉で最初の形に戻ります）。行はクラッシュ・ライド・ハイハット・スネア・バスドラムで、〈＋ ほかの音〉でオープンハイハット・リム・ハイタム・ロータムも出せます。〈タイト〉はドラム全体の響きを短く止めます。マスは〈畳む〉でしまえ、〈ドラム〉の画面の〈マスを出す〉で出し直せます。その小節だけ叩き方を変えたい時は、小節の番号を押して〈この小節のドラムを打ち込む〉を選びます。シンバルを「自動も入れる」にすると、区切りの頭・4小節ごとのシンバルと食いの合わせも足されます。「打ち込んだとおり」なら表のとおりにだけ鳴ります。</p>
     <p><b>小節</b>：左上の番号を押すと、その小節だけのテンポ・伴奏・ドラムの変更や、小節の追加・削除ができます。</p>
