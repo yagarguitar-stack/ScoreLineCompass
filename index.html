@@ -477,12 +477,17 @@ body.radialing,body.radialing *{-webkit-user-select:none!important;user-select:n
 .toast{position:fixed;left:50%;bottom:calc(200px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:120;background:#000c;color:#fff;
   padding:7px 14px;border-radius:18px;font-size:13px;pointer-events:none}
 :focus-visible{outline:2px solid var(--indigo-on-ink);outline-offset:2px}
+
+/* ScoreLine の道具の札：狭い画面では「Compass」だけにして、折れないように */
+#bSL{white-space:nowrap}
+@media (max-width:600px){ #bSL .sl-l{display:none} }
 </style>
 <!-- 共通の画面の部品（真鍮の羅針盤と海図）。読み込めない時・古い版の時は、これまでの見た目のまま -->
 <link rel="stylesheet" href="https://yagarguitar-stack.github.io/design-system/v1/components.css">
 <script src="https://yagarguitar-stack.github.io/design-system/v1/components.js"></script>
 <!-- 共通の楽器の音（ドラムの録音 MusyngKite）。ScoreLineTAB と同じ音で鳴らす -->
 <script src="https://yagarguitar-stack.github.io/design-system/v1/sound.js"></script>
+<script src="https://yagarguitar-stack.github.io/design-system/v1/scoreline-link.js"></script>
 <style>
 /* ===== 共通の部品（版 1.3 以上）が読めた時だけ効く（body に sl-ch と ds-chart が付く）=====
    替えるのは譜面の外側だけ。紙面は白地に黒のまま */
@@ -2452,6 +2457,132 @@ function tapeHtml(s){
 }
 
 
+
+/* ══════════════════════════════════════════════════════════════
+   ScoreLine の道具の行き来
+   L様——「同ツールの中から行き来したい」「移る時は今の曲を持って移る」。
+   〈‹ 曲の一覧〉の隣の「ScoreLine Compass」を押すと道具が並ぶ。
+   受け渡しの決まりは design-system の v1/scoreline-link.js（SLLink）が持つ。
+   ここは「この道具の曲 ⇄ 共通の曲」の出し入れだけを受け持つ。
+
+   Compass の曲は、区切りの名を小節の目印（mark）で持ち、Key・拍子・テンポは区間ごと。
+   共通の曲は Key・テンポを曲で一つ持つので、最初の区間の値を出し、受ける時は全区間に入れる。
+   拍子は小節ごとに受け渡す（拍子の違う所で区間を分ける）。
+   コードは文字（例 Cmaj7）。Compass に無い種類は近い物で鳴らし、元の種類を c.sl に控えて、
+   持って帰る時に元へ戻す。カポとチューニングは Compass では使わないが、預かって返す。
+   ══════════════════════════════════════════════════════════════ */
+const SL_ME='compass';
+const SL_TK=TPQ/2;                                   /* コードの位置は8分の升目で数える */
+function slTs(str){ const [n,d]=String(str||'4/4').split('/').map(Number); return {n:n||4,d:d||4}; }
+function slExport(){
+  const s=song(); if(!s) return null;
+  if(!s.slLink){ s.slLink=SLLink.newLink(); save(); }
+  const F=flatBars(s), sec0=s.sections[0]||{};
+  const ts=slTs(sec0.ts), kr=KEYS.indexOf(sec0.key);
+  const secs=[];
+  F.forEach(x=>{ if(x.b.mark||!secs.length) secs.push({name:x.b.mark||'',n:0}); secs[secs.length-1].n++; });
+  const seq=[];
+  const bars=F.map(x=>{
+    const bt=slTs(x.sec.ts);
+    const chords=(x.b.chords||[]).map(c=>{
+      let ch=SLLink.chordFromCompass(c.c); if(!ch) return null;
+      if(c.sl&&SLLink.chordToCompass({root:ch.root,type:c.sl.type,bass:ch.bass})===c.c) ch.type=c.sl.type;
+      return {tick:Math.round(c.t*SL_TK),root:ch.root,type:ch.type,bass:ch.bass};
+    }).filter(Boolean).sort((a,c)=>a.tick-c.tick);
+    const notes=(x.b.notes||[]).map(n=>({start:n.start,len:n.len,
+      kind:(n.kind==='rest'||!n.stops||!n.stops.length)?'rest':'chord',
+      stops:JSON.parse(JSON.stringify(n.stops||[])),sym:JSON.parse(JSON.stringify(n.sym||{})),lyric:n.lyric||null}));
+    notes.forEach(n=>seq.push(n));
+    return { ts:(bt.n!==ts.n||bt.d!==ts.d)?bt:null, chords, lyric:x.b.lyric||'', notes };
+  });
+  SLLink.noteTiesFromCompass(seq);
+  /* Key を決めていなかった曲は、C のままなら「決めていない」で返す */
+  const keyNone=!!(s.slKeyNone&&sec0.key==='C'&&!sec0.minor);
+  return { v:1, from:SL_ME, link:s.slLink, title:s.name||'',
+    key:{root:(kr<0||keyNone)?null:kr,qual:sec0.minor?'min':'maj'}, ts, bpm:sec0.tempo||100,
+    capo:s.slCapo||0, tuning:s.slTuning||'std', part:(typeof s.slPart==='number'?s.slPart:null), secs, bars, melody:true };
+}
+function slApply(s,cs,fresh){
+  s.slLink=cs.link;
+  if(cs.title) s.name=cs.title;
+  s.slCapo=cs.capo||0; s.slTuning=cs.tuning||'std';
+  s.slKeyNone=!(cs.key&&cs.key.root!=null);
+  if(typeof cs.part==='number') s.slPart=cs.part;
+  const keyName=(cs.key&&cs.key.root!=null)?KEYS[((cs.key.root%12)+12)%12]:'C';
+  const minor=!!(cs.key&&cs.key.qual==='min');
+  const oldF=fresh?[]:flatBars(s).map(x=>x.b), oldSecs=fresh?[]:s.sections.slice();
+  /* メロディのタイを Compass の付け方へ（小節をまたいで一続きに） */
+  let seq=null;
+  if(cs.melody){ seq=[]; cs.bars.forEach(cb=>(cb.notes||[]).forEach(n=>seq.push(n))); seq=SLLink.clone(seq); SLLink.noteTiesToCompass(seq); }
+  let qi=0;
+  const list=cs.bars.map((cb,i)=>{
+    const b=oldF[i]||newBar();
+    const want=(cb.chords||[]).map(c=>{ const name=SLLink.chordToCompass(c); if(!name) return null;
+      return {t:Math.round(c.tick/SL_TK),c:name,syn:false,sl:{type:c.type}}; }).filter(Boolean);
+    const now=(b.chords||[]).map(c=>c.t+':'+c.c).join(',');
+    if(now!==want.map(c=>c.t+':'+c.c).join(',')) b.chords=want;
+    if(seq&&Array.isArray(cb.notes)){
+      const ns=seq.slice(qi,qi+cb.notes.length); qi+=cb.notes.length;
+      if(ns.length) b.notes=ns.map(n=>({id:nid(),start:n.start,len:n.len,kind:(n.kind==='rest')?'rest':'note',
+        stops:(n.kind==='rest')?[]:(n.stops||[]),sym:n.sym||{},lyric:n.lyric||null}));
+    }
+    if(cb.lyric) b.lyric=cb.lyric;
+    b.mark=null;
+    return {b,ts:cb.ts||cs.ts};
+  });
+  let k=0; (cs.secs||[]).forEach(sc=>{ if(list[k]&&sc.name) list[k].b.mark=sc.name; k+=sc.n; });
+  const secs=[];
+  list.forEach(x=>{
+    const tsStr=x.ts.n+'/'+x.ts.d; let cur=secs[secs.length-1];
+    if(!cur||cur.ts!==tsStr){
+      const base=oldSecs[secs.length]||null;
+      cur=newSection(''); cur.bars=[];
+      if(base){ cur.id=base.id; cur.accomp=base.accomp; cur.drum=base.drum; }
+      cur.key=keyName; cur.minor=minor; cur.ts=tsStr; cur.tempo=cs.bpm||100;
+      try{ fitPatterns(cur); }catch(_){}
+      secs.push(cur);
+    }
+    cur.bars.push(x.b);
+  });
+  if(secs.length) s.sections=secs;
+  normalizeSong(s);
+  return s;
+}
+function slOpenSong(s){ S.songId=s.id; S.secId=s.sections[0]&&s.sections[0].id; S.view='sec'; resetEdit(); render(); }
+function slReceive(){
+  if(!window.SLLink) return;
+  const cs=SLLink.take(SL_ME); if(!cs) return;
+  const from=(SLLink.tool(cs.from)||{}).name||'ほかの道具';
+  const ttl=cs.title||'無題の曲';
+  const make=()=>{
+    const s={id:uid(),name:ttl,start:'chord',view:'staff',barsPerRow:2,guideOn:true,colorOn:true,guideAlways:false,
+             melVoice:'guitar',created:Date.now(),updated:Date.now(),sections:[newSection('')]};
+    slApply(s,cs,true); db.songs.push(s); touch(s); slOpenSong(s);
+    toast(from+'から「'+ttl+'」を持ってきました');
+  };
+  const ex=db.songs.find(x=>x.slLink&&x.slLink===cs.link);
+  if(!ex){ make(); return; }
+  sheet(`<h2>前に持ってきた曲があります</h2><p>「${esc(ttl)}」—— ${esc(from)}から持ってきた中身を</p>
+    <div class="btns"><button class="tb" id="slOver">この曲に書き換える</button><button class="tb" id="slNew">新しい曲として足す</button>
+    <button class="tb" id="slNo">受け取らない</button></div>
+    <p>書き換えても、この道具にしか無い物（伴奏・ドラムの型など）は残ります。書き換えた後は ↶ で戻せます。</p>`,sh=>{
+    sh.querySelector('#slOver').onclick=()=>{ closeSheet(); slApply(ex,cs,false); touch(ex); slOpenSong(ex); toast('「'+ttl+'」を書き換えました'); };
+    sh.querySelector('#slNew').onclick=()=>{ closeSheet(); make(); };
+    sh.querySelector('#slNo').onclick=()=>closeSheet();
+  });
+}
+function slOpenTools(){
+  if(!window.SLLink){ toast('道具を切り替える部品を読み込めませんでした。通信を確かめて、開き直してください'); return; }
+  sheet(`<h2>ScoreLine の道具</h2><div class="btns sl-tools">`+SLLink.TOOLS.map(t=>{
+      const me=(t.id===SL_ME);
+      return `<button class="tb big${me?' on':''}" data-sl="${t.id}">${esc(t.name)}<small>${me?'いま開いています':esc(t.note)+'　— 今の曲を持って移ります'}</small></button>`;
+    }).join('')+`</div>`,sh=>{
+    sh.querySelectorAll('[data-sl]').forEach(b=>{ if(b.dataset.sl===SL_ME){ b.onclick=()=>closeSheet(); return; }
+      b.onclick=()=>{ const cs=slExport(); if(!cs){ toast('持っていく曲がありません'); return; }
+        if(!SLLink.carry(b.dataset.sl,cs)) toast('曲を預けられませんでした'); }; });
+  });
+}
+
 function newSongSheet(){
   sheet(`<h2>新しい曲</h2><label class="f">曲名<input id="sName" value="新しい曲"></label>
     <p>どこから作り始めますか。途中からは自由に行き来できます。</p>
@@ -2885,7 +3016,7 @@ function renderSec(L,R,M){
   if(!s.sections.length) s.sections.push(newSection(''));
   normalizeSong(s); if(!secById(S.secId)) S.secId=s.sections[0].id;
   $('title').textContent=s.name;
-  L.innerHTML='<button class="tb" id="bBack">‹ 曲の一覧</button>'+histButtons();
+  L.innerHTML='<button class="tb" id="bBack">‹ 曲の一覧</button><button class="tb" id="bSL" title="ScoreLine の道具を切り替える"><span class="sl-l">ScoreLine </span>Compass</button>'+histButtons();
   R.innerHTML='<button class="tb" id="bMenu" aria-label="曲の操作">…</button>';
   const marks=flatBars(s).filter(x=>x.b.mark);
   M.innerHTML=`${metaBarHtml()}${marks.length?`<div class="marks">${marks.map(x=>`<button class="mkj" data-jump="${x.b.id}">${esc(x.b.mark)}</button>`).join('')}</div>`:''}<div class="viewbar">
@@ -2900,6 +3031,7 @@ function renderSec(L,R,M){
   bindMetaBar(M);
   const tt=$('title'); tt.classList.add('clickable'); tt.title='押すと名前を変えられます'; tt.onclick=()=>songMenu(s);
   $('bBack').onclick=()=>{ S.view='list'; resetEdit(); render(); };
+  $('bSL').onclick=slOpenTools;
   $('bMenu').onclick=()=>songMenu(s);
   $('sTtl').onclick=()=>songMenu(s); $('sTmp').onclick=()=>openTempoSheet();
   M.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{ const el=document.querySelector(`.bar[data-bar="${b.dataset.jump}"]`);
@@ -6603,7 +6735,7 @@ function openTech(){
   sheet(`<h2>奏法　<small style="font-weight:400;color:var(--on-ink-dim)">${list.length>1?list.length+'個の音符':'この音符'}（押さえの奏法は${strLabel}）</small></h2>
     <details open class="tsec"><summary>長さ</summary>
       ${row('音価',[[T.WHOLE,'全音符'],[T.HALF,'2分'],[T.QUARTER,'4分'],[T.EIGHTH,'8分'],[T.SIXTEENTH,'16分'],[T.THIRTY2,'32分']].map(([u,l])=>B('len',u,l,n0.len===u)).join('')
-        +[[Math.round(T.HALF*1.5),'付点2分'],[Math.round(T.QUARTER*1.5),'付点4分'],[Math.round(T.EIGHTH*1.5),'付点8分'],[T.TRIP4,'4分3連'],[T.TRIP8,'8分3連'],[T.TRIP16,'16分3連']].map(([u,l])=>B('len',u,l,n0.len===u)).join(''))}
+        +[[Math.round(T.HALF*1.5),'付点2分'],[Math.round(T.QUARTER*1.5),'付点4分'],[Math.round(T.EIGHTH*1.5),'付点8分'],[T.TRIP4,'3連4分'],[T.TRIP8,'3連8分'],[T.TRIP16,'3連16分']].map(([u,l])=>B('len',u,l,n0.len===u)).join(''))}
     </details>
     <details open class="tsec"><summary>音のつなぎ（前の音から）</summary>
       ${row('つなぎ',opts('link',t0.link&&t0.link!=='bd'?t0.link:'',[['','なし'],['tie','タイ'],['h','ハンマリング'],['p','プリング'],['sl','スライド'],['gl','グリッサンド'],['leg','スラー']]))}
@@ -6731,6 +6863,7 @@ function helpSheet(){
 }
 
 load(); histInit(); render();
+setTimeout(slReceive,0);   /* 他の道具から持ってきた曲を受け取る */
 </script>
 <script>/* 共通の画面の部品（版 1.3 以上）が読めた時だけ、真鍮の羅針盤と海図にする */
 (function(){
