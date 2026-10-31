@@ -479,8 +479,14 @@ body.radialing,body.radialing *{-webkit-user-select:none!important;user-select:n
 :focus-visible{outline:2px solid var(--indigo-on-ink);outline-offset:2px}
 
 /* ScoreLine の道具の札：狭い画面では「Compass」だけにして、折れないように */
-#bSL{white-space:nowrap}
-@media (max-width:600px){ #bSL .sl-l{display:none} }
+/* ══ 道具名の札（左端）══
+   L様——「ScoreLine TAB のロゴみたいに他も作って、押せる場所を統一して」。
+   曲の一覧の画面に出ている金の筆記体の名前を、そのまま左上に掲げる。 */
+.sl-logo{background:none;border:none;display:flex;align-items:center;gap:6px;cursor:pointer;padding:2px 6px;white-space:nowrap}
+.sl-logo .t{font:600 italic 23px/1 "Cormorant Garamond",serif;letter-spacing:.06em;color:#f3e2b0;text-shadow:0 1px 0 #000}
+.sl-logo .car{font-size:11px;color:#d4ae62}
+.sl-logo:hover .t{color:#fff1c8}
+@media (max-width:600px){ .sl-logo .sl-l{display:none} .sl-logo .car{display:none} .sl-logo .t{font-size:19px} }
 </style>
 <!-- 共通の画面の部品（真鍮の羅針盤と海図）。読み込めない時・古い版の時は、これまでの見た目のまま -->
 <link rel="stylesheet" href="https://yagarguitar-stack.github.io/design-system/v1/components.css">
@@ -2571,13 +2577,15 @@ function slReceive(){
     sh.querySelector('#slNo').onclick=()=>closeSheet();
   });
 }
-function slOpenTools(){
+function slGoList(){ closeSheet(); S.view='list'; resetEdit(); render(); }
+function slOpenTools(withSongs){
   if(!window.SLLink){ toast('道具を切り替える部品を読み込めませんでした。通信を確かめて、開き直してください'); return; }
   sheet(`<h2>ScoreLine の道具</h2><div class="btns sl-tools">`+SLLink.TOOLS.map(t=>{
       const me=(t.id===SL_ME);
       return `<button class="tb big${me?' on':''}" data-sl="${t.id}">${esc(t.name)}<small>${me?'いま開いています':esc(t.note)+'　— 今の曲を持って移ります'}</small></button>`;
-    }).join('')+`</div>`,sh=>{
+    }).join('')+(withSongs?`<button class="tb big" data-sl="__list" style="margin-top:8px">曲の一覧<small>この道具の曲を選ぶ・作る</small></button>`:'')+`</div>`,sh=>{
     sh.querySelectorAll('[data-sl]').forEach(b=>{ if(b.dataset.sl===SL_ME){ b.onclick=()=>closeSheet(); return; }
+      if(b.dataset.sl==='__list'){ b.onclick=slGoList; return; }
       b.onclick=()=>{ const cs=slExport(); if(!cs){ toast('持っていく曲がありません'); return; }
         if(!SLLink.carry(b.dataset.sl,cs)) toast('曲を預けられませんでした'); }; });
   });
@@ -3016,7 +3024,8 @@ function renderSec(L,R,M){
   if(!s.sections.length) s.sections.push(newSection(''));
   normalizeSong(s); if(!secById(S.secId)) S.secId=s.sections[0].id;
   $('title').textContent=s.name;
-  L.innerHTML='<button class="tb" id="bBack">‹ 曲の一覧</button><button class="tb" id="bSL" title="ScoreLine の道具を切り替える"><span class="sl-l">ScoreLine </span>Compass</button>'+histButtons();
+  /* 道具名の札（左端）。文字で道具の一覧、▼ で曲の一覧。〈‹ 曲の一覧〉は ▼ に任せて外した */
+  L.innerHTML='<button class="sl-logo" id="bSL" title="ScoreLine の道具を切り替える（▼ は曲の一覧）"><span class="t"><span class="sl-l">ScoreLine </span>Compass</span><span class="car">▼</span></button>'+histButtons();
   R.innerHTML='<button class="tb" id="bMenu" aria-label="曲の操作">…</button>';
   const marks=flatBars(s).filter(x=>x.b.mark);
   M.innerHTML=`${metaBarHtml()}${marks.length?`<div class="marks">${marks.map(x=>`<button class="mkj" data-jump="${x.b.id}">${esc(x.b.mark)}</button>`).join('')}</div>`:''}<div class="viewbar">
@@ -3030,8 +3039,11 @@ function renderSec(L,R,M){
     <button class="stmp" id="sTmp" title="押すとテンポを変えられます"><svg class="qn" viewBox="0 0 10 22" aria-label="四分音符"><ellipse cx="4.2" cy="18" rx="4" ry="2.9" transform="rotate(-22 4.2 18)" fill="#1a1a1a"/><rect x="7.3" y="1" width="1.2" height="16.5" fill="#1a1a1a"/></svg> = ${s.sections[0].tempo}</button></div><div class="dgmtop" id="dgmTop"></div><div class="bars" id="bars"></div><button class="addbar" id="bAddBar">＋ 小節を足す</button></div>`;
   bindMetaBar(M);
   const tt=$('title'); tt.classList.add('clickable'); tt.title='押すと名前を変えられます'; tt.onclick=()=>songMenu(s);
-  $('bBack').onclick=()=>{ S.view='list'; resetEdit(); render(); };
-  $('bSL').onclick=slOpenTools;
+  $('bSL').onclick=e=>{
+    const car=$('bSL').querySelector('.car');
+    if(!car||car.getBoundingClientRect().width<4){ slOpenTools(true); return; }   /* 狭い画面は ▼ が隠れる */
+    if(e.target.closest('.car')){ slGoList(); return; }
+    slOpenTools(false); };
   $('bMenu').onclick=()=>songMenu(s);
   $('sTtl').onclick=()=>songMenu(s); $('sTmp').onclick=()=>openTempoSheet();
   M.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{ const el=document.querySelector(`.bar[data-bar="${b.dataset.jump}"]`);
